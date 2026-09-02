@@ -1,0 +1,98 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function isSelf(uid) { return signedIn() && request.auth.uid == uid; }
+    function profile() { return get(/databases/$(database)/documents/profiles/$(request.auth.uid)).data; }
+    function isAdmin() { return signedIn() && profile().role == 'platform_admin'; }
+    function isStudent() { return signedIn() && profile().role == 'student'; }
+    function isParent() { return signedIn() && profile().role == 'parent'; }
+    function isOrgAdmin() { return signedIn() && profile().role == 'org_admin'; }
+    function ownsOrg(orgId) {
+      return signedIn() && get(/databases/$(database)/documents/organizations/$(orgId)).data.owner_id == request.auth.uid;
+    }
+
+    function pmIsAdmin() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/pmRoles/$(request.auth.uid))
+        && get(/databases/$(database)/documents/pmRoles/$(request.auth.uid)).data.role == "admin";
+    }
+
+    function pmIsTenantSelf(tenantId) {
+      return signedIn() && request.auth.uid == tenantId;
+    }
+
+    match /profiles/{uid} {
+      allow read: if true;
+      allow create: if isSelf(uid);
+      allow update: if isSelf(uid) || isAdmin();
+    }
+
+    match /organizations/{orgId} {
+      allow read: if resource.data.status == 'approved' || (signedIn() && resource.data.owner_id == request.auth.uid) || isAdmin();
+      allow create: if signedIn() && isOrgAdmin() && request.resource.data.owner_id == request.auth.uid;
+      allow update: if (signedIn() && resource.data.owner_id == request.auth.uid) || isAdmin();
+    }
+
+    match /volunteer_posts/{postId} {
+      allow read: if resource.data.status in ['open', 'full', 'completed']
+        || (signedIn() && resource.data.created_by == request.auth.uid)
+        || isAdmin()
+        || ownsOrg(resource.data.org_id);
+      allow create: if signedIn() && ownsOrg(request.resource.data.org_id);
+      allow update: if isAdmin() || (signedIn() && resource.data.created_by == request.auth.uid) || ownsOrg(resource.data.org_id);
+    }
+
+    match /volunteer_signups/{signupId} {
+      allow read: if resource.data.status in ['registered', 'confirmed', 'completed']
+        || (signedIn() && resource.data.student_id == request.auth.uid)
+        || isAdmin()
+        || ownsOrg(get(/databases/$(database)/documents/volunteer_posts/$(resource.data.post_id)).data.org_id);
+      allow create: if isStudent() && request.resource.data.student_id == request.auth.uid;
+      allow update: if (signedIn() && resource.data.student_id == request.auth.uid) || isAdmin()
+        || ownsOrg(get(/databases/$(database)/documents/volunteer_posts/$(resource.data.post_id)).data.org_id);
+    }
+
+    match /need_posts/{postId} {
+      allow read: if resource.data.status in ['open', 'fulfilled', 'expired']
+        || (signedIn() && resource.data.created_by == request.auth.uid)
+        || isAdmin()
+        || ownsOrg(resource.data.org_id);
+      allow create: if signedIn() && ownsOrg(request.resource.data.org_id);
+      allow update: if isAdmin()
+        || (signedIn() && resource.data.created_by == request.auth.uid)
+        || ownsOrg(resource.data.org_id)
+        || (isParent()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['quantity_claimed'])
+          && request.resource.data.quantity_claimed >= resource.data.quantity_claimed);
+    }
+
+    match /need_claims/{claimId} {
+      allow read: if resource.data.status in ['committed', 'delivered']
+        || (signedIn() && resource.data.parent_id == request.auth.uid)
+        || isAdmin()
+        || ownsOrg(get(/databases/$(database)/documents/need_posts/$(resource.data.post_id)).data.org_id);
+      allow create: if isParent() && request.resource.data.parent_id == request.auth.uid;
+      allow update: if (signedIn() && resource.data.parent_id == request.auth.uid) || isAdmin()
+        || ownsOrg(get(/databases/$(database)/documents/need_posts/$(resource.data.post_id)).data.org_id);
+    }
+
+    match /notifications/{notificationId} {
+      allow read: if signedIn() && resource.data.user_id == request.auth.uid;
+      allow create: if signedIn();
+      allow update: if signedIn() && resource.data.user_id == request.auth.uid;
+    }
+
+    match /pmRoles/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow create, update, delete: if pmIsAdmin();
+    }
+
+    match /pmTenants/{tenantId} {
+      allow read: if pmIsAdmin() || pmIsTenantSelf(tenantId);
+      allow create, update, delete: if pmIsAdmin();
+    }
+  }
+}

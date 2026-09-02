@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteConfig } from "@/lib/site";
-import { IntroSequence } from "@/components/home/intro-sequence";
+import { useIntroReady } from "@/components/intro-provider";
 import { HeroSection } from "@/components/home/hero-section";
 import { PinnedFillText, PinnedFillWord } from "@/components/home/pinned-fill-text";
 import { InvestorSection } from "@/components/home/investor-section";
@@ -13,6 +13,8 @@ import { ReviewsMarquee } from "@/components/home/reviews-marquee";
 import { ServiceCards } from "@/components/home/service-cards";
 import { FeaturedUnits } from "@/components/home/featured-units";
 import { ResidentsStrip } from "@/components/home/residents-strip";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type Listing = {
   id: string;
@@ -26,20 +28,19 @@ type Listing = {
 };
 
 export function HomePageClient({ listings }: { listings: Listing[] }) {
-  const [introDone, setIntroDone] = useState(false);
+  const introReady = useIntroReady();
   const refreshed = useRef(false);
 
   useEffect(() => {
-    if (introDone && !refreshed.current) {
+    if (introReady && !refreshed.current) {
       refreshed.current = true;
       requestAnimationFrame(() => ScrollTrigger.refresh());
     }
-  }, [introDone]);
+  }, [introReady]);
 
   return (
     <>
-      {!introDone && <IntroSequence onComplete={() => setIntroDone(true)} />}
-      <HeroSection introReady={introDone} />
+      <HeroSection introReady={introReady} />
       <InvestorSection />
       <PinnedFillText lines={[...siteConfig.pinnedLines]} variant="light" />
       <OurStorySection />
@@ -52,5 +53,3 @@ export function HomePageClient({ listings }: { listings: Listing[] }) {
     </>
   );
 }
-
-gsap.registerPlugin(ScrollTrigger);

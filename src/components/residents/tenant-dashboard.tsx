@@ -5,7 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import type { TenantPublic } from "@/lib/tenant-types";
 import type { AuthUser } from "@/components/residents/residents-client";
+import { PageHero } from "@/components/page-hero";
 import { heroImage, siteConfig, siteImages } from "@/lib/site";
+import { getTenantById } from "@/lib/firebase/tenants";
 
 type TenantDashboardProps = {
   user: Extract<AuthUser, { role: "tenant" }>;
@@ -17,42 +19,33 @@ export function TenantDashboard({ user, onLogout }: TenantDashboardProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/tenant/me")
-      .then((r) => r.json())
-      .then((data) => setTenant(data.tenant ?? null))
+    getTenantById(user.id)
+      .then((data) => setTenant(data))
       .finally(() => setLoading(false));
+  }, [user.id]);
+
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent("nav-theme-sync"));
   }, []);
 
   return (
     <>
-      <section
-        className="relative isolate min-h-[44svh] overflow-hidden"
-        data-nav="dark"
-        style={{ backgroundImage: `url(${heroImage})`, backgroundSize: "cover", backgroundPosition: "center" }}
+      <PageHero
+        badge="Tenant account"
+        title={`Welcome back, ${user.name.split(" ")[0]}.`}
+        image={heroImage}
+        showScroll
       >
-        <div aria-hidden className="absolute inset-0 z-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={heroImage} alt="" className="h-full w-full object-cover object-center" />
+        <div className="mt-8 sm:mt-10">
+          <button
+            type="button"
+            onClick={onLogout}
+            className="rounded-full border border-white/40 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10 sm:px-8"
+          >
+            Sign out
+          </button>
         </div>
-        <div aria-hidden className="absolute inset-0 z-[1] bg-gradient-to-b from-black/30 via-black/25 to-black/60" />
-        <div className="relative z-[2] mx-auto flex min-h-[44svh] max-w-5xl flex-col justify-end px-5 pb-10 pt-28 sm:px-8 sm:pb-12 sm:pt-32">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <span className="mb-4 inline-block rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-label text-white backdrop-blur-sm">
-                Tenant account
-              </span>
-              <h1 className="text-display-md text-white">Welcome back, {user.name.split(" ")[0]}.</h1>
-            </div>
-            <button
-              type="button"
-              onClick={onLogout}
-              className="rounded-full border border-white/35 px-6 py-3 text-sm text-white hover:bg-white/10"
-            >
-              Sign out
-            </button>
-          </div>
-        </div>
-      </section>
+      </PageHero>
 
       <div className="bg-paper px-5 pb-20 pt-10 sm:px-8 sm:pt-12" data-nav="light">
         <div className="mx-auto max-w-5xl">

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { AuthUser } from "@/components/residents/residents-client";
+import { signIn } from "@/lib/firebase/auth";
 
 type LoginPanelProps = {
   open: boolean;
@@ -23,21 +24,12 @@ export function LoginPanel({ open, onClose, onSuccess }: LoginPanelProps) {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/auth/session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error ?? "Unable to sign in.");
-        return;
-      }
-      onSuccess(data.user);
+      const user = await signIn(email, password);
+      onSuccess(user);
       setEmail("");
       setPassword("");
-    } catch {
-      setError("Unable to sign in.");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unable to sign in.");
     } finally {
       setLoading(false);
     }

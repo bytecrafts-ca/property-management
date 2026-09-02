@@ -4,6 +4,7 @@ import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { LenisProvider } from "@/components/lenis-provider";
+import { IntroProvider } from "@/components/intro-provider";
 import { siteConfig } from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -18,9 +19,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${inter.variable} lenis`}>
       <body className="font-[family-name:var(--font-inter)] antialiased">
         <LenisProvider>
-          <Nav />
-          <main>{children}</main>
-          <Footer />
+          <IntroProvider>
+            <Nav />
+            <main>{children}</main>
+            <Footer />
+          </IntroProvider>
         </LenisProvider>
       </body>
     </html>

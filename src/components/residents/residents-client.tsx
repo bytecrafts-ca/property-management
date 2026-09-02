@@ -6,6 +6,7 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteConfig, siteImages } from "@/lib/site";
+import { watchAuthUser, signOutUser } from "@/lib/firebase/auth";
 import { LoginPanel } from "@/components/residents/login-panel";
 import { TenantDashboard } from "@/components/residents/tenant-dashboard";
 import { AdminDashboard } from "@/components/residents/admin-dashboard";
@@ -50,11 +51,11 @@ export function ResidentsClient() {
   const galleryRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    fetch("/api/auth/session")
-      .then((r) => r.json())
-      .then((data) => setUser(data.user ?? null))
-      .catch(() => setUser(null))
-      .finally(() => setLoading(false));
+    const unsubscribe = watchAuthUser((nextUser) => {
+      setUser(nextUser);
+      setLoading(false);
+    });
+    return unsubscribe;
   }, []);
 
   useEffect(() => {
@@ -95,23 +96,15 @@ export function ResidentsClient() {
   }, [user, loading]);
 
   async function handleLogout() {
-    await fetch("/api/auth/session", { method: "DELETE" });
+    await signOutUser();
     setUser(null);
   }
 
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-paper" data-nav="light">
-        <p className="text-sm text-muted">Loading...</p>
-      </div>
-    );
-  }
-
-  if (user?.role === "admin") {
+  if (!loading && user?.role === "admin") {
     return <AdminDashboard onLogout={handleLogout} />;
   }
 
-  if (user?.role === "tenant") {
+  if (!loading && user?.role === "tenant") {
     return <TenantDashboard user={user} onLogout={handleLogout} />;
   }
 
@@ -119,6 +112,8 @@ export function ResidentsClient() {
     <>
       <ResidentsHero onLogin={() => setLoginOpen(true)} />
 
+      {!loading && (
+        <>
       <section className="bg-surface px-5 py-20 sm:px-8 sm:py-28 md:px-10" data-nav="light">
         <div className="mx-auto max-w-7xl">
           <span className="pill-label mb-6 inline-block">Tenant support</span>
@@ -210,6 +205,8 @@ export function ResidentsClient() {
           </div>
         </div>
       </section>
+        </>
+      )}
 
       <LoginPanel
         open={loginOpen}

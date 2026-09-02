@@ -6,30 +6,57 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
+import { navThemeForPath, syncNavTheme } from "@/lib/nav-theme";
+import { useIntroReady } from "@/components/intro-provider";
+
+function normalizePath(path: string) {
+  const trimmed = path.replace(/\/$/, "");
+  return trimmed || "/";
+}
 
 export function Nav() {
   const pathname = usePathname();
+  const introReady = useIntroReady();
   const [open, setOpen] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme, setTheme] = useState<"dark" | "light">(() => navThemeForPath(pathname));
 
   useEffect(() => {
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            setTheme((e.target.getAttribute("data-nav") as "dark" | "light") || "light");
-          }
-        });
-      },
-      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
-    );
-    document.querySelectorAll("[data-nav]").forEach((el) => obs.observe(el));
-    return () => obs.disconnect();
+    let raf = 0;
+    const update = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => setTheme(syncNavTheme()));
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    window.addEventListener("nav-theme-sync", update);
+
+    const observer = new MutationObserver(update);
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["data-nav"],
+    });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      observer.disconnect();
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      window.removeEventListener("nav-theme-sync", update);
+    };
+  }, [pathname, introReady]);
+
+  useEffect(() => {
+    setTheme(navThemeForPath(pathname));
   }, [pathname]);
 
   useEffect(() => setOpen(false), [pathname]);
 
-  const onDark = theme === "dark";
+  const onDark = !introReady || theme === "dark";
+  const currentPath = normalizePath(pathname);
 
   return (
     <>
@@ -52,7 +79,7 @@ export function Nav() {
                 className={cn(
                   "text-sm link-underline",
                   onDark ? "text-surface/85 hover:text-surface" : "text-muted hover:text-ink",
-                  pathname === item.href && "opacity-60"
+                  currentPath === normalizePath(item.href) && "opacity-60"
                 )}
               >
                 {item.label}

@@ -1,20 +1,32 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { heroImage, siteConfig } from "@/lib/site";
+import { heroImage } from "@/lib/site";
 import { useIntroReady } from "@/components/intro-provider";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const HERO_BASE_SCALE = 1.06;
 
-type ResidentsHeroProps = {
-  onLogin: () => void;
+type PageHeroProps = {
+  badge?: string;
+  title: string;
+  description?: string;
+  image?: string;
+  children?: ReactNode;
+  showScroll?: boolean;
 };
 
-export function ResidentsHero({ onLogin }: ResidentsHeroProps) {
+export function PageHero({
+  badge,
+  title,
+  description,
+  image = heroImage,
+  children,
+  showScroll = true,
+}: PageHeroProps) {
   const introReady = useIntroReady();
   const sectionRef = useRef<HTMLElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
@@ -60,19 +72,17 @@ export function ResidentsHero({ onLogin }: ResidentsHeroProps) {
     window.dispatchEvent(new CustomEvent("nav-theme-sync"));
   }, []);
 
-  const { tenants } = siteConfig;
-
   return (
     <section
       ref={sectionRef}
       className="relative isolate min-h-[100svh] w-full overflow-hidden"
       data-nav="dark"
-      style={{ backgroundImage: `url(${heroImage})`, backgroundSize: "cover", backgroundPosition: "center" }}
+      style={{ backgroundImage: `url(${image})`, backgroundSize: "cover", backgroundPosition: "center" }}
     >
       <div ref={bgRef} aria-hidden className="pointer-events-none absolute inset-0 z-0 will-change-transform">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={heroImage}
+          src={image}
           alt=""
           className="h-full w-full object-cover object-center"
           fetchPriority="high"
@@ -91,34 +101,24 @@ export function ResidentsHero({ onLogin }: ResidentsHeroProps) {
           className="mx-auto w-full max-w-7xl lg:max-w-3xl"
           style={introReady ? undefined : { opacity: 0 }}
         >
-          <span className="mb-5 inline-block rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-label text-white backdrop-blur-sm sm:mb-6">
-            {tenants.label}
-          </span>
-          <h1 className="text-display-lg max-w-4xl text-white">{tenants.headline}</h1>
-          <p className="prose-dek mt-5 max-w-xl text-white/90 sm:mt-6">{tenants.body}</p>
-          <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:gap-4">
-            <button
-              type="button"
-              onClick={onLogin}
-              className="rounded-full bg-white px-6 py-3.5 text-center text-sm font-medium text-ink transition-colors hover:bg-white/90 sm:px-8"
-            >
-              Tenant login
-            </button>
-            <a
-              href={`tel:${siteConfig.contact.emergencyPhone}`}
-              className="rounded-full border border-white/40 px-6 py-3.5 text-center text-sm font-medium text-white transition-colors hover:bg-white/10 sm:px-8"
-            >
-              {tenants.emergencyCta}
-            </a>
-          </div>
+          {badge && (
+            <span className="mb-5 inline-block rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-label text-white backdrop-blur-sm sm:mb-6">
+              {badge}
+            </span>
+          )}
+          <h1 className="text-display-lg max-w-4xl text-white">{title}</h1>
+          {description && <p className="prose-dek mt-5 max-w-xl text-white/90 sm:mt-6">{description}</p>}
+          {children}
         </div>
 
-        <div
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 sm:bottom-8"
-          style={introReady ? undefined : { opacity: 0 }}
-        >
-          <p className="text-label text-white/50">Scroll</p>
-        </div>
+        {showScroll && (
+          <div
+            className="absolute bottom-6 left-1/2 -translate-x-1/2 sm:bottom-8"
+            style={introReady ? undefined : { opacity: 0 }}
+          >
+            <p className="text-label text-white/50">Scroll</p>
+          </div>
+        )}
       </div>
     </section>
   );

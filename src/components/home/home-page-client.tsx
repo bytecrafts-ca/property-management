@@ -8,7 +8,7 @@ import { IntroSequence } from "@/components/home/intro-sequence";
 import { HeroSection } from "@/components/home/hero-section";
 import { PinnedFillText, PinnedFillWord } from "@/components/home/pinned-fill-text";
 import { InvestorSection } from "@/components/home/investor-section";
-import { StatsGrid } from "@/components/home/stats-grid";
+import { OurStorySection } from "@/components/home/our-story-section";
 import { ServiceCards } from "@/components/home/service-cards";
 import { FeaturedUnits } from "@/components/home/featured-units";
 import { ResidentsStrip } from "@/components/home/residents-strip";
@@ -41,7 +41,7 @@ export function HomePageClient({ listings }: { listings: Listing[] }) {
       <HeroSection introReady={introDone} />
       <InvestorSection />
       <PinnedFillText lines={[...siteConfig.pinnedLines]} variant="light" />
-      <StatsGrid />
+      <OurStorySection />
       <ServiceCards />
       <FeaturedUnits listings={listings} />
       <PinnedFillWord word="SIMPLE" subtitle="One property. One manager. One bill at the end of the month." />

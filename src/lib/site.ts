@@ -26,13 +26,6 @@ export const siteImages = {
   },
 } as const;
 
-export const siteStats = [
-  { value: 85, suffix: "+", label: "Homes under management", image: siteImages.homes.detached },
-  { value: 340, suffix: "+", label: "Tenants screened", image: siteImages.homes.living },
-  { value: 24, suffix: "hr", label: "Response to owners", image: siteImages.homes.kitchen },
-  { value: 98, suffix: "%", label: "Rent collected on time", image: siteImages.homes.porch },
-] as const;
-
 export const siteServices = [
   {
     number: "01",
@@ -75,6 +68,18 @@ export const siteConfig = {
   dek: "You own a residential property. We screen tenants, handle complaints, coordinate repairs, and collect rent. You get a statement and one bill at the end of the month.",
   pinnedLines: ["WE RUN", "THE RENTAL.", "YOU GET", "THE REPORT."],
   pinnedHorizontal: "Screening. Complaints. One monthly bill.",
+  ourStory: {
+    label: "Our story",
+    headline: "We started as owners.",
+    paragraphs: [
+      "Our work in real estate began with our own holdings. Over the years we acquired residential properties and managed them ourselves, from daily tenant issues to major renovations aimed at stronger rental income, cash flow, and long-term value.",
+      "That is the experience we now extend to other investors. End-to-end management: tenant placement, day-to-day operations, compliance, form filings, capital projects, and clear monthly reporting. A modest share of rent for a portfolio that runs without you on the ground.",
+      "We built this for Canadian investors who live abroad or cannot manage the rental themselves. You stay informed. We carry the work.",
+    ],
+    caption: "Full-service management for owners who want the rental handled, not another job added to their week.",
+    cta: "Talk to us",
+    image: siteImages.homes.duplex,
+  },
   contact: {
     phone: "[CLIENT_PHONE]",
     email: "[CLIENT_EMAIL]",
@@ -84,14 +89,12 @@ export const siteConfig = {
   nav: [
     { label: "Rentals", href: "/properties" },
     { label: "Tenants", href: "/residents" },
-    { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ],
   navActions: [
     { label: "Get a quote", href: "/contact", variant: "ghost" as const },
     { label: "Request", href: "/request", variant: "solid" as const },
   ],
-  stats: siteStats,
   services: siteServices,
   images: siteImages,
 } as const;

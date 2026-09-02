@@ -59,6 +59,49 @@ export const siteServices = [
   },
 ] as const;
 
+export const siteReviews = [
+  {
+    quote: "Maintenance request on a Sunday. They had someone out the next morning. That kind of response is rare.",
+    name: "Sarah M.",
+    role: "Tenant, Leslieville",
+  },
+  {
+    quote: "We have rented with them for three years. Issues get handled properly and communication is always clear.",
+    name: "Daniel K.",
+    role: "Tenant, Riverside",
+  },
+  {
+    quote: "I live in Dubai. They handle everything from tenant calls to form filings. I just read the monthly report.",
+    name: "Amir H.",
+    role: "Property owner",
+  },
+  {
+    quote: "Fast replies, fair handling, and tenants who actually want to stay. That makes my job as an owner simple.",
+    name: "Priya N.",
+    role: "Property owner",
+  },
+  {
+    quote: "Had a heating issue in January. Called once and it was sorted the same day. Could not ask for more.",
+    name: "James T.",
+    role: "Tenant, Beaches",
+  },
+  {
+    quote: "Professional from screening through move-in. They treat tenants well and that shows in how long people stay.",
+    name: "Elena R.",
+    role: "Tenant, Midtown",
+  },
+  {
+    quote: "Our fridge stopped working on a Friday night. They had a repair booked before noon the next day.",
+    name: "Marcus L.",
+    role: "Tenant, Danforth",
+  },
+  {
+    quote: "Clear monthly statements, no surprises, and tenants who renew. Exactly what I needed from a manager.",
+    name: "Helen W.",
+    role: "Property owner",
+  },
+] as const;
+
 export const siteConfig = {
   name: "[CLIENT_NAME]",
   fullName: "[CLIENT_NAME] Property Management",
@@ -74,10 +117,10 @@ export const siteConfig = {
     label: "Our story",
     headline: "We started as owners.",
     paragraphs: [
-      "Our work in real estate began with our own holdings. Over the years we acquired residential properties and managed them ourselves, from daily tenant issues to major renovations aimed at stronger rental income, cash flow, and long-term value.",
+      "Our work in real estate began with our own holdings. Over the years we acquired residential properties and managed them ourselves, from daily tenant issues to major renovations aimed at stronger rental income, cash flow, and capital appreciation.",
       "That is the experience we now extend to other investors. End-to-end management: tenant placement, day-to-day operations, compliance, form filings, capital projects, and clear monthly reporting. A modest share of rent for a portfolio that runs without you on the ground.",
-      "We built this for Canadian investors who live abroad or cannot manage the rental themselves. You stay informed. We carry the work.",
-      "We hold the same standard for the people living in those homes. Tenants get fast responses, clear communication, and issues handled properly. That keeps people happy, turnover low, and rentals stable for the owners we serve.",
+      "We built this for investors who live abroad or cannot manage the rental themselves. You stay informed. We carry the work.",
+      "We hold the same standard for the people living in our properties. Tenants get fast responses, clear communication, and issues handled immediately. That keeps tenants happy, turnover low, and rentals stable for the owners we serve.",
     ],
     caption: "Full-service management for owners who want the rental handled, not another job added to their week.",
     cta: "Talk to us",
@@ -107,5 +150,6 @@ export const siteConfig = {
     { label: "Request", href: "/request", variant: "solid" as const },
   ],
   services: siteServices,
+  reviews: siteReviews,
   images: siteImages,
 } as const;

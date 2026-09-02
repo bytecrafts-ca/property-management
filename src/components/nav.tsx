@@ -11,7 +11,6 @@ export function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
-  const isHome = pathname === "/";
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -30,7 +29,7 @@ export function Nav() {
 
   useEffect(() => setOpen(false), [pathname]);
 
-  const onDark = isHome && theme === "dark";
+  const onDark = theme === "dark";
 
   return (
     <>

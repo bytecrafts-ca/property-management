@@ -120,7 +120,7 @@ export const siteConfig = {
       "Our work in real estate began with our own holdings. Over the years we acquired residential properties and managed them ourselves, from daily tenant issues to major renovations aimed at stronger rental income, cash flow, and capital appreciation.",
       "That is the experience we now extend to other investors. End-to-end management: tenant placement, day-to-day operations, compliance, form filings, capital projects, and clear monthly reporting. A modest share of rent for a portfolio that runs without you on the ground.",
       "We built this for investors who live abroad or cannot manage the rental themselves. You stay informed. We carry the work.",
-      "We hold the same standard for the people living in our properties. Tenants get fast responses, clear communication, and issues handled immediately. That keeps tenants happy, turnover low, and rentals stable for the owners we serve.",
+      "We hold the same standard for the tenants living in our properties. Tenants get fast responses, clear communication, and issues handled immediately. That keeps tenants happy, turnover low, and rentals stable for the owners we serve.",
     ],
     caption: "Full-service management for owners who want the rental handled, not another job added to their week.",
     cta: "Talk to us",
@@ -129,7 +129,7 @@ export const siteConfig = {
   tenants: {
     label: "For tenants",
     headline: "Good homes. Good service.",
-    body: "We manage properties for owners, and we manage the rental experience for the people living in them with the same care. Maintenance requests answered quickly. Complaints handled properly. Clear communication when something needs attention.",
+    body: "We manage properties for owners, and we manage the rental experience for the tenants living in our properties with the same care. Maintenance requests answered quickly. Complaints handled properly. Clear communication when something needs attention.",
     note: "That is why so many of our tenants stay. When you rent one of our homes, you are not left waiting.",
     cta: "Submit a request",
     emergencyCta: "Call for emergencies",

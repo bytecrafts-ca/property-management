@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "slug": "354-queen-east-unit-12",
+    "title": "354 Queen Street East, Unit 12",
+    "address": "354 Queen Street East",
+    "unit": "Unit 12",
+    "neighbourhood": "Leslieville",
+    "type": "apartment",
+    "beds": 2,
+    "baths": 1,
+    "rent": 2800,
+    "images": ["https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&q=80"],
+    "status": "live"
+  },
+  {
+    "id": "2",
+    "slug": "88-broadview-305",
+    "title": "88 Broadview Avenue, #305",
+    "address": "88 Broadview Avenue",
+    "unit": "#305",
+    "neighbourhood": "Riverside",
+    "type": "condo",
+    "beds": 1,
+    "baths": 1,
+    "rent": 2350,
+    "images": ["https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1200&q=80"],
+    "status": "live"
+  },
+  {
+    "id": "3",
+    "slug": "17-kingston-road",
+    "title": "17 Kingston Road",
+    "address": "17 Kingston Road",
+    "unit": "",
+    "neighbourhood": "Beaches",
+    "type": "house",
+    "beds": 3,
+    "baths": 2,
+    "rent": 3900,
+    "images": ["https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80"],
+    "status": "live"
+  }
+]

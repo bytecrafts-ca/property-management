@@ -1,26 +1,137 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-paper: #fafaf8;
+  --color-surface: #ffffff;
+  --color-ink: #1a1a1a;
+  --color-muted: #737373;
+  --color-line: #e8e8e4;
+  --color-fill: #ffffff;
+  --color-accent: #8b7355;
+  --color-ink-soft: #c8c8c4;
+  --color-soft: #f3f3f0;
+
+  --font-display: "Times New Roman", Times, serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --radius-card: 1.25rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html.lenis,
+html.lenis body {
+  height: auto;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-surface);
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+}
+
+.text-display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 11vw, 8.75rem);
+  letter-spacing: -0.03em;
+  line-height: 0.88;
+}
+
+.text-display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 8vw, 6.5rem);
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+}
+
+.text-display-md {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 4rem);
+  letter-spacing: -0.02em;
+  line-height: 0.94;
+}
+
+.text-display-sm {
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 3vw, 2.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.text-label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.prose-dek {
+  font-size: clamp(1.0625rem, 2vw, 1.375rem);
+  line-height: 1.65;
+  max-width: 42rem;
+}
+
+.pill-label {
+  display: inline-block;
+  border: 1px solid var(--color-line);
+  border-radius: 9999px;
+  padding: 0.375rem 0.875rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-muted);
+  background: var(--color-surface);
+}
+
+.card-photo {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--color-soft);
+}
+
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.35s var(--ease-out-expo);
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

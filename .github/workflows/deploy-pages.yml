@@ -30,6 +30,12 @@ jobs:
         env:
           GITHUB_PAGES: "true"
           NEXT_PUBLIC_BASE_PATH: "/property-management"
+          NEXT_PUBLIC_FIREBASE_API_KEY: "AIzaSyAe7vzB11y-meA38U7hAObEVIrtxfXuf9s"
+          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: "whitby-link-ca.firebaseapp.com"
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: "whitby-link-ca"
+          NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: "whitby-link-ca.firebasestorage.app"
+          NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: "254042083047"
+          NEXT_PUBLIC_FIREBASE_APP_ID: "1:254042083047:web:dd427191b3f6b0d3411c42"
 
       - uses: actions/upload-pages-artifact@v3
         with:

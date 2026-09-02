@@ -51,10 +51,15 @@ export function ResidentsClient() {
   const galleryRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const unsubscribe = watchAuthUser((nextUser) => {
-      setUser(nextUser);
+    let unsubscribe = () => {};
+    try {
+      unsubscribe = watchAuthUser((nextUser) => {
+        setUser(nextUser);
+        setLoading(false);
+      });
+    } catch {
       setLoading(false);
-    });
+    }
     return unsubscribe;
   }, []);
 

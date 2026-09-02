@@ -1,4 +1,6 @@
-export const heroImage = "/hero-bg.jpg";
+import { withBasePath } from "./base-path";
+
+export const heroImage = withBasePath("/hero-bg.jpg");
 
 export const siteImages = {
   toronto: {

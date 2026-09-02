@@ -23,6 +23,8 @@ export const siteImages = {
       "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
     duplex:
       "https://images.unsplash.com/photo-1605276374101-dee0dd778822?auto=format&fit=crop&w=1200&q=80",
+    modern:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
   },
 } as const;
 
@@ -79,7 +81,7 @@ export const siteConfig = {
     ],
     caption: "Full-service management for owners who want the rental handled, not another job added to their week.",
     cta: "Talk to us",
-    image: siteImages.homes.duplex,
+    image: siteImages.homes.modern,
   },
   tenants: {
     label: "For tenants",

@@ -70,7 +70,7 @@ export const siteConfig = {
   heroSubhead:
     "Screening, complaints, maintenance, rent collection. One monthly bill. One report. For investors with houses, duplexes, and condo units across the GTA.",
   market: "Greater Toronto Area",
-  dek: "You are not hiring us to manage a building or a community. You own a residential property and want someone else to screen tenants, handle complaints, coordinate repairs, and collect rent. We do that. You get a statement and a bill at the end of the month.",
+  dek: "You own a residential property. We screen tenants, handle complaints, coordinate repairs, and collect rent. You get a statement and one bill at the end of the month.",
   pinnedLines: ["WE RUN", "THE RENTAL.", "YOU GET", "THE REPORT."],
   pinnedHorizontal: "Screening. Complaints. One monthly bill.",
   contact: {

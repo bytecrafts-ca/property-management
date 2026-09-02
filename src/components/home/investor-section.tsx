@@ -22,7 +22,7 @@ export function InvestorSection() {
 
         <div>
           <span className="pill-label mb-6 inline-block">How it works</span>
-          <h2 className="text-display-sm mb-6">Not a building manager. A rental manager.</h2>
+          <h2 className="text-display-sm mb-6">Rental managers for residential investors.</h2>
           <p className="prose-dek text-muted mb-6">{siteConfig.dek}</p>
           <ul className="space-y-4 text-sm sm:text-base">
             {[

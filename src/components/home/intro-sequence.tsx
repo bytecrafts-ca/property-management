@@ -11,6 +11,8 @@ export function IntroSequence({ onComplete }: { onComplete: () => void }) {
   const progressRef = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
+  const nameRef = useRef<HTMLParagraphElement>(null);
+  const taglineRef = useRef<HTMLParagraphElement>(null);
   const [done, setDone] = useState(false);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
@@ -66,13 +68,13 @@ export function IntroSequence({ onComplete }: { onComplete: () => void }) {
           0.4
         )
         .fromTo(
-          contentRef.current?.querySelector("[data-intro-name]"),
+          nameRef.current,
           { y: 56, opacity: 0, clipPath: "inset(100% 0 0 0)" },
           { y: 0, opacity: 1, clipPath: "inset(0% 0 0 0)", duration: 1.05, ease: "power4.out" },
           0.55
         )
         .fromTo(
-          contentRef.current?.querySelector("[data-intro-tagline]"),
+          taglineRef.current,
           { y: 20, opacity: 0 },
           { y: 0, opacity: 0.8, duration: 0.7, ease: "power3.out" },
           0.95
@@ -136,10 +138,10 @@ export function IntroSequence({ onComplete }: { onComplete: () => void }) {
           className="mb-8 h-px w-20 origin-center bg-white/50 will-change-transform"
           style={{ transform: "scaleX(0)" }}
         />
-        <p data-intro-name className="font-display text-center text-4xl text-white sm:text-5xl md:text-6xl">
+        <p ref={nameRef} className="font-display text-center text-4xl text-white sm:text-5xl md:text-6xl">
           {siteConfig.name}
         </p>
-        <p data-intro-tagline className="mt-4 max-w-md text-center text-sm text-white/80 sm:text-base">
+        <p ref={taglineRef} className="mt-4 max-w-md text-center text-sm text-white/80 sm:text-base">
           {siteConfig.tagline}
         </p>
 

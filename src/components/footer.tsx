@@ -18,9 +18,18 @@ export function Footer() {
           <div>
             <p className="text-label text-muted mb-4">Contact</p>
             <div className="space-y-2 text-sm">
-              <p><a href={`tel:${siteConfig.contact.phone}`} className="link-underline">{siteConfig.contact.phone}</a></p>
-              <p><a href={`mailto:${siteConfig.contact.email}`} className="link-underline">{siteConfig.contact.email}</a></p>
-              <p className="text-muted">{siteConfig.contact.address}</p>
+              <p>
+                <a href={`tel:${siteConfig.contact.phone.replace(/\D/g, "")}`} className="link-underline">
+                  {siteConfig.contact.phone}
+                </a>
+              </p>
+              {siteConfig.contact.email ? (
+                <p>
+                  <a href={`mailto:${siteConfig.contact.email}`} className="link-underline">
+                    {siteConfig.contact.email}
+                  </a>
+                </p>
+              ) : null}
             </div>
           </div>
           <div>

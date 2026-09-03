@@ -138,10 +138,10 @@ export const siteConfig = {
     emergencyCta: "Call for emergencies",
   },
   contact: {
-    phone: "[CLIENT_PHONE]",
-    email: "[CLIENT_EMAIL]",
-    address: "[CLIENT_ADDRESS]",
-    emergencyPhone: "[CLIENT_EMERGENCY_PHONE]",
+    phone: "416-834-3587",
+    email: "",
+    address: "",
+    emergencyPhone: "416-834-3587",
     heroImage: siteImages.homes.contactHero,
   },
   nav: [

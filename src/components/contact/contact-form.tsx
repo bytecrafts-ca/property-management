@@ -178,20 +178,21 @@ export function ContactForm() {
           <div className="space-y-4 text-sm">
             <p>
               <span className="mb-1 block text-muted">Phone</span>
-              <a href={`tel:${siteConfig.contact.phone}`} className="font-medium link-underline">
+              <a
+                href={`tel:${siteConfig.contact.phone.replace(/\D/g, "")}`}
+                className="font-medium link-underline"
+              >
                 {siteConfig.contact.phone}
               </a>
             </p>
-            <p>
-              <span className="mb-1 block text-muted">Email</span>
-              <a href={`mailto:${siteConfig.contact.email}`} className="font-medium link-underline">
-                {siteConfig.contact.email}
-              </a>
-            </p>
-            <p>
-              <span className="mb-1 block text-muted">Office</span>
-              <span className="leading-relaxed">{siteConfig.contact.address}</span>
-            </p>
+            {siteConfig.contact.email ? (
+              <p>
+                <span className="mb-1 block text-muted">Email</span>
+                <a href={`mailto:${siteConfig.contact.email}`} className="font-medium link-underline">
+                  {siteConfig.contact.email}
+                </a>
+              </p>
+            ) : null}
           </div>
         </div>
       </div>

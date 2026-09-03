@@ -6,7 +6,7 @@ export function organizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: siteConfig.name,
-    legalName: siteConfig.legalName.startsWith("[") ? siteConfig.name : siteConfig.legalName,
+    legalName: siteConfig.legalName || siteConfig.name,
     url: siteConfig.domain,
     email: siteConfig.nap.email,
     telephone: siteConfig.nap.phoneDisplay,

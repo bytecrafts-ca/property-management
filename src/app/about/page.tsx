@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SeoPage } from "@/components/seo/seo-page";
 import { buildMetadata } from "@/lib/seo/meta";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata("/about");
 
@@ -24,14 +25,16 @@ export default function AboutPage() {
         The work is practical: place good tenants, answer issues, collect rent, and report clearly. Owners stay informed
         without living inside every ticket.
       </p>
+      <p>Hours: {siteConfig.hours}</p>
       <p>
-        Founded: [YEAR]. Legal name: [CLIENT_LEGAL_NAME]. Hours: [CLIENT_HOURS].
+        Prefer Durham Region. If your property is elsewhere in the GTA,{" "}
+        <Link href="/contact" className="link-underline">
+          contact us
+        </Link>{" "}
+        anyway. We will tell you honestly if we can take it on.
       </p>
       <p>
-        <Link href="/contact" className="link-underline">
-          Contact us
-        </Link>{" "}
-        or request a{" "}
+        Or request a{" "}
         <Link href="/free-rental-analysis" className="link-underline">
           free rental analysis
         </Link>

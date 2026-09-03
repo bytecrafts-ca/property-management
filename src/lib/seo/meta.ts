@@ -60,9 +60,9 @@ export const pageMeta: Record<string, PageMeta> = {
   },
   "/available-rentals": {
     path: "/available-rentals",
-    title: `Available Rentals in Durham | ${brand}`,
+    title: `Available Homes | ${brand}`,
     description:
-      "Browse homes managed by 9th Star Property Management across Durham Region. Listing history and current openings.",
+      "Browse homes currently available for rent or sale with 9th Star Property Management across Durham Region.",
   },
   "/tenants": {
     path: "/tenants",
@@ -126,11 +126,6 @@ export const pageMeta: Record<string, PageMeta> = {
     title: `Thank You | ${brand}`,
     description: "Thanks for contacting 9th Star Property Management.",
     noIndex: true,
-  },
-  "/pay-rent": {
-    path: "/pay-rent",
-    title: `Pay Rent | ${brand}`,
-    description: "Pay rent instructions for tenants in 9th Star managed homes across Durham Region.",
   },
 };
 

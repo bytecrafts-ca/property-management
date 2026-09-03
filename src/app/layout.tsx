@@ -15,9 +15,7 @@ export const metadata: Metadata = {
   title: `${siteConfig.fullName} | ${siteConfig.market}`,
   description: siteConfig.tagline,
   metadataBase: new URL(siteConfig.domain),
-  verification: siteConfig.gscVerification.startsWith("[")
-    ? undefined
-    : { google: siteConfig.gscVerification },
+  verification: siteConfig.gscVerification ? { google: siteConfig.gscVerification } : undefined,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { siteConfig } from "@/lib/site";
+import { submitViaFormSubmit } from "@/lib/formsubmit";
 
 const inputClass =
   "w-full rounded-xl border border-line bg-paper px-4 py-3 text-sm outline-none transition-colors focus:border-ink";
@@ -29,6 +30,8 @@ export function LeadForm({
 
     const form = new FormData(e.currentTarget);
     const payload = {
+      _subject: "9th Star rental analysis request",
+      form: "Free rental analysis",
       name: String(form.get("name") ?? ""),
       email: String(form.get("email") ?? ""),
       phone: String(form.get("phone") ?? ""),
@@ -41,12 +44,7 @@ export function LeadForm({
     };
 
     try {
-      const res = await fetch("/api/leads/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!res.ok) throw new Error("Unable to send");
+      await submitViaFormSubmit(payload);
       router.push("/thank-you");
     } catch {
       setError("Something went wrong. Call us at 416-834-3587.");

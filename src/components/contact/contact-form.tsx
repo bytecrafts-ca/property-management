@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { siteConfig, siteImages } from "@/lib/site";
-import { submitContactForm } from "@/lib/firebase/contact";
+import { submitViaFormSubmit } from "@/lib/formsubmit";
 
 const propertyTypes = [
   { value: "house", label: "House" },
@@ -32,7 +32,16 @@ export function ContactForm() {
     setLoading(true);
 
     try {
-      await submitContactForm({ name, email, phone, propertyType, address, message });
+      await submitViaFormSubmit({
+        _subject: "9th Star contact form",
+        form: "Contact",
+        name,
+        email,
+        phone,
+        propertyType,
+        address,
+        message,
+      });
       setSent(true);
       setName("");
       setEmail("");

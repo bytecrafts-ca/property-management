@@ -18,8 +18,7 @@ export default function PrivacyPage() {
     >
       <p>Last updated: September 2026.</p>
       <p>
-        This site is operated by {siteConfig.name} ({siteConfig.legalName}). Contact: {siteConfig.nap.email} or{" "}
-        {siteConfig.nap.phoneDisplay}.
+        This site is operated by {siteConfig.name}. Contact: {siteConfig.nap.email} or {siteConfig.nap.phoneDisplay}.
       </p>
       <h2>Information we collect</h2>
       <p>
@@ -34,13 +33,13 @@ export default function PrivacyPage() {
       </p>
       <h2>Storage</h2>
       <p>
-        Lead forms may be stored as files on the hosting environment and/or in connected services configured by the
-        operator. Tenant and admin data may be stored in Firebase or similar infrastructure.
+        Form submissions are delivered by email through FormSubmit. Tenant and admin portal data may be stored in
+        Firebase.
       </p>
       <h2>Cookies and analytics</h2>
       <p>
-        Once analytics is enabled (GA4 ID placeholder: {siteConfig.ga4Id}), pages may use cookies or similar
-        technologies for measurement. You can control cookies through your browser settings.
+        Analytics is not enabled on this site yet. If it is added later, pages may use cookies or similar technologies
+        for measurement. You can control cookies through your browser settings.
       </p>
       <h2>Your choices</h2>
       <p>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import listings from "../../../../content/listings.json";
+import listings from "../../../../content/listings";
 import { buildMetadata, absoluteUrl } from "@/lib/seo/meta";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 

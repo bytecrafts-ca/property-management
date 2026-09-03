@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig, siteImages } from "@/lib/site";
-import { submitTenantRequest } from "@/lib/firebase/tenant-requests";
+import { submitViaFormSubmit } from "@/lib/formsubmit";
 
 const requestTypes = [
   { value: "maintenance", label: "Maintenance / repair" },
@@ -43,7 +43,17 @@ export function TenantRequestForm() {
     setLoading(true);
 
     try {
-      await submitTenantRequest({ name, email, phone, unit, requestType, urgency, message });
+      await submitViaFormSubmit({
+        _subject: "9th Star tenant request",
+        form: "Tenant request",
+        name,
+        email,
+        phone,
+        unit,
+        requestType,
+        urgency,
+        message,
+      });
       setSent(true);
       setName("");
       setEmail("");

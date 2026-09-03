@@ -65,7 +65,7 @@ export function TenantRequestForm() {
         <span className="pill-label mb-4 inline-block">Request received</span>
         <h2 className="text-display-sm mb-4 text-2xl sm:text-3xl">We have your request.</h2>
         <p className="prose-dek text-muted mb-8 max-w-md">
-          Our team will follow up. If heat, water, flooding, or lockouts are involved, call now instead of waiting on
+          Someone will follow up. If heat, water, flooding, or lockouts are involved, call now instead of waiting on
           email.
         </p>
         <div className="flex flex-col gap-3 sm:flex-row">

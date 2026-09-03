@@ -71,39 +71,33 @@ export const siteReviews = [
     role: "Former tenant",
   },
   {
-    quote: "We have rented with them for three years. Issues get handled properly and communication is always clear.",
-    name: "Daniel K.",
-    role: "Tenant, Riverside",
+    quote:
+      "I own a condo in Toronto and I was drowning in tenant texts. Azfar took it over and now I only hear from him when something actually needs my okay. Worth every dollar.",
+    name: "Farhan A.",
+    role: "Condo owner, Toronto",
   },
   {
-    quote: "I live in Dubai. They handle everything from tenant calls to form filings. I just read the monthly report.",
-    name: "Amir H.",
-    role: "Property owner",
+    quote:
+      "Moved into one of their places last year. Dryer died. They had someone out the next morning. Never had that with my last landlord.",
+    name: "Samantha L.",
+    role: "Tenant, Whitby",
   },
   {
-    quote: "Fast replies, fair handling, and tenants who actually want to stay. That makes my job as an owner simple.",
-    name: "Priya N.",
-    role: "Property owner",
+    quote:
+      "I live in Dubai and own a house in Pickering. Before Azfar, I was stressing every month about rent and repairs. Now I get a clean report, rent hits my account, and I do not have to chase anyone. That is all I wanted from a property manager.",
+    name: "Aisha K.",
+    role: "Homeowner, Pickering",
   },
   {
-    quote: "Had a heating issue in January. Called once and it was sorted the same day. Could not ask for more.",
-    name: "James T.",
-    role: "Tenant, Beaches",
+    quote: "Applied, got approved, keys handed over. No weird runaround.",
+    name: "Jordan T.",
+    role: "Tenant, Oshawa",
   },
   {
-    quote: "Professional from screening through move-in. They treat tenants well and that shows in how long people stay.",
-    name: "Elena R.",
-    role: "Tenant, Midtown",
-  },
-  {
-    quote: "Our fridge stopped working on a Friday night. They had a repair booked before noon the next day.",
-    name: "Marcus L.",
-    role: "Tenant, Danforth",
-  },
-  {
-    quote: "Clear monthly statements, no surprises, and tenants who renew. Exactly what I needed from a manager.",
-    name: "Helen W.",
-    role: "Property owner",
+    quote:
+      "My Ajax house sat empty for weeks when I tried to manage it myself. Azfar listed it properly, showed it, and had someone in within two weeks. Wish I called sooner.",
+    name: "Ravi P.",
+    role: "Homeowner, Ajax",
   },
 ] as const;
 

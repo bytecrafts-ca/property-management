@@ -115,5 +115,30 @@ service cloud.firestore {
         && request.resource.data.address.size() <= 200;
       allow read, update, delete: if pmIsAdmin();
     }
+
+    match /pmTenantRequests/{requestId} {
+      allow create: if request.resource.data.keys().hasAll([
+          "name", "email", "phone", "unit", "requestType", "urgency", "message", "createdAt"
+        ])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 120
+        && request.resource.data.email is string
+        && request.resource.data.email.matches('^.+@.+\\..+$')
+        && request.resource.data.phone is string
+        && request.resource.data.phone.size() >= 7
+        && request.resource.data.phone.size() <= 30
+        && request.resource.data.unit is string
+        && request.resource.data.unit.size() >= 2
+        && request.resource.data.unit.size() <= 200
+        && request.resource.data.requestType in [
+          "maintenance", "complaint", "appliance", "plumbing", "electrical", "heating", "other"
+        ]
+        && request.resource.data.urgency in ["routine", "soon", "urgent"]
+        && request.resource.data.message is string
+        && request.resource.data.message.size() >= 10
+        && request.resource.data.message.size() <= 3000;
+      allow read, update, delete: if pmIsAdmin();
+    }
   }
 }

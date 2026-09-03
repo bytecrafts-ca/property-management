@@ -27,6 +27,8 @@ export const siteImages = {
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
     contactHero:
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2400&q=85",
+    // Same signature hero used on home/residents so request feels on-brand
+    requestHero: heroImage,
   },
 } as const;
 

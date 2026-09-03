@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 9th Star Property Management
 
-## Getting Started
+Production SEO site for Durham Region landlord acquisition.
 
-First, run the development server:
+**Live domain:** https://9thstarpropertymanagement.ca  
+**Stack:** Next.js App Router, TypeScript, Tailwind CSS, Firebase tenant portal
+
+## Quick start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Client placeholders (`src/lib/site.ts`)
 
-## Learn More
+Replace before calling the site "fully launched" for local SEO:
 
-To learn more about Next.js, take a look at the following resources:
+- `legalName`
+- `founded`
+- `hours`
+- `googleBusinessProfileUrl`
+- `ga4Id`
+- `gscVerification`
+- `nap.address` (only if you publish a real address; keep `addressDisplay` false otherwise)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Phone and email are already set to production values used on the live site.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## SEO architecture
 
-## Deploy on Vercel
+Money pages:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| URL | Primary keyword |
+| --- | --- |
+| `/` | property management Durham Region |
+| `/property-management-durham/` | Durham property management |
+| `/property-management-pickering/` | property management Pickering |
+| `/property-management-ajax/` | property management Ajax |
+| `/property-management-whitby/` | property management Whitby |
+| `/property-management-oshawa/` | property management Oshawa |
+| `/property-management-clarington/` | property management Clarington |
+| `/property-management-bowmanville/` | property management Bowmanville |
+| `/property-management-courtice/` | property management Courtice |
+| `/property-management-brooklin/` | property management Brooklin |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Supporting conversion + authority:
+
+- Services under `/services/`
+- Owners: `/for-landlords/`, `/free-rental-analysis/`, `/pricing/`, `/how-it-works/`
+- Guides under `/guides/`
+- Areas hub: `/areas-we-serve/`
+- Contact + NAP: `/contact/`
+- Sitemap: `/sitemap.xml`
+- Robots: `/robots.txt`
+
+Keyword map: `src/lib/seo/keywords.ts`  
+Meta map: `src/lib/seo/meta.ts`  
+Schema helpers: `src/lib/seo/schema.ts`
+
+## Lead forms
+
+Owner lead form posts to `/api/leads` and redirects to `/thank-you/`.  
+Leads append to `content/leads.json` (gitignored). On Vercel, filesystem writes are ephemeral. For production persistence, connect email or a database next.
+
+## Tenant portal
+
+`/tenants/` uses Firebase auth. Legacy `/residents/` redirects here.  
+`/request/` redirects to `/maintenance-request/`.  
+`/properties/` redirects to `/available-rentals/`.
+
+## Local SEO (off-site)
+
+See `local-seo-checklist.md`. Ranking #1 in Durham requires GBP, reviews, citations, and consistent NAP in addition to this site.
+
+## 90-day ranking plan
+
+### Weeks 1–2
+
+- Launch site on the live domain with HTTPS
+- Claim/optimize Google Business Profile
+- Submit sitemap in Google Search Console
+- Start first 10 citation listings with identical NAP
+- Confirm call tracking and form thank-you page
+
+### Weeks 3–6
+
+- Publish 1 landlord guide per week (or refresh existing guides with local examples)
+- Request Google reviews from happy landlords after resolved work
+- Post weekly on GBP
+- Fix any crawl/index issues found in Search Console
+
+### Weeks 7–12
+
+- Reinforce top city pages with unique FAQs, photos, and internal links from new content
+- Expand pages that already show impressions
+- Build local links (chambers, partners, sponsorships)
+- Compare rank for Tier S keywords: Durham + Pickering/Ajax/Whitby/Oshawa/Clarington/Bowmanville
+
+## Analytics notes
+
+1. Set `ga4Id` in `src/lib/site.ts` and inject GA4 in `layout.tsx` when ready
+2. Convert `/thank-you/` into a GA4 `generate_lead` event
+3. Mark tel: CTAs with `data-cta` attributes already present for click tracking
+4. In Google Ads, create conversions for form submit and calls
+
+## Deploy
+
+Configured for Vercel. Push to the connected GitHub repo to redeploy. Keep Cloudflare SSL Full (strict) if proxying DNS.
+
+## Content rules
+
+- No fake reviews, licenses, case studies, or rent stats
+- Mark SAMPLE content clearly
+- No em dashes in copy
+- Primary audience is landlords and investors, not tenants first

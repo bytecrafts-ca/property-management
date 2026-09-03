@@ -43,6 +43,46 @@ export function Footer() {
           </div>
         </div>
         <p className="mt-14 text-xs text-muted">© {year} {siteConfig.fullName}</p>
+        {/* Ranking support only: tiny muted city links, same footer style */}
+        <p className="mt-3 max-w-3xl text-[11px] leading-relaxed text-muted/80">
+          Serving{" "}
+          <Link href="/property-management-pickering" className="hover:text-ink">
+            Pickering
+          </Link>
+          ,{" "}
+          <Link href="/property-management-ajax" className="hover:text-ink">
+            Ajax
+          </Link>
+          ,{" "}
+          <Link href="/property-management-whitby" className="hover:text-ink">
+            Whitby
+          </Link>
+          ,{" "}
+          <Link href="/property-management-oshawa" className="hover:text-ink">
+            Oshawa
+          </Link>
+          ,{" "}
+          <Link href="/property-management-clarington" className="hover:text-ink">
+            Clarington
+          </Link>
+          ,{" "}
+          <Link href="/property-management-bowmanville" className="hover:text-ink">
+            Bowmanville
+          </Link>
+          ,{" "}
+          <Link href="/property-management-courtice" className="hover:text-ink">
+            Courtice
+          </Link>
+          ,{" "}
+          <Link href="/property-management-brooklin" className="hover:text-ink">
+            Brooklin
+          </Link>
+          .{" "}
+          <Link href="/property-management-durham" className="hover:text-ink">
+            Durham Region property management
+          </Link>
+          .
+        </p>
       </div>
     </footer>
   );

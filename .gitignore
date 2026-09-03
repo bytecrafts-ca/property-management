@@ -42,3 +42,4 @@ next-env.d.ts
 
 # live tenant account data
 content/tenants.json
+content/leads.json

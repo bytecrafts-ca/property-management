@@ -139,7 +139,7 @@ export const siteConfig = {
   },
   contact: {
     phone: "416-834-3587",
-    email: "",
+    email: "info@9thstarpropertymanagement.ca",
     address: "",
     emergencyPhone: "416-834-3587",
     heroImage: siteImages.homes.contactHero,

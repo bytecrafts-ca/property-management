@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "@/lib/site";
+import { BrandName } from "@/components/brand-name";
 import { cn } from "@/lib/utils";
 import { navThemeForPath, syncNavTheme } from "@/lib/nav-theme";
 import { useIntroReady } from "@/components/intro-provider";
@@ -68,7 +69,7 @@ export function Nav() {
       >
         <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-4 sm:px-8 sm:py-5">
           <Link href="/" className="text-sm font-semibold tracking-tight">
-            {siteConfig.name}
+            <BrandName compact />
           </Link>
 
           <div className="hidden items-center gap-8 lg:flex">
@@ -123,7 +124,9 @@ export function Nav() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[60] bg-surface">
             <div className="flex h-full flex-col px-5 py-4 sm:px-8">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold">{siteConfig.name}</span>
+                <span className="text-sm font-semibold">
+                  <BrandName compact />
+                </span>
                 <button type="button" aria-label="Close" onClick={() => setOpen(false)} className="p-2">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <line x1="6" y1="6" x2="18" y2="18" />

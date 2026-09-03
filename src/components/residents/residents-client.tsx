@@ -35,9 +35,9 @@ const actionCards = [
     external: true,
   },
   {
-    label: "Rentals",
+    label: "Homes",
     title: "Browse homes",
-    description: "See available units we are placing tenants in across the GTA.",
+    description: "See homes we manage and place tenants in across the GTA.",
     href: "/properties",
     image: siteImages.homes.living,
   },

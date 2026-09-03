@@ -25,6 +25,8 @@ export const siteImages = {
       "https://images.unsplash.com/photo-1605276374101-dee0dd778822?auto=format&fit=crop&w=1200&q=80",
     modern:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+    contactHero:
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2400&q=85",
   },
 } as const;
 
@@ -61,9 +63,10 @@ export const siteServices = [
 
 export const siteReviews = [
   {
-    quote: "Maintenance request on a Sunday. They had someone out the next morning. That kind of response is rare.",
-    name: "Sarah M.",
-    role: "Tenant, Leslieville",
+    quote:
+      "My family and I lived in one of Azfar’s properties for four years until we were able to purchase our own home. Azfar was a great landlord and was very attentive. He was easy to communicate with and if there was ever a problem with the property, he would be quick to send out help or even come fix the problem himself. Overall a pleasant experience.",
+    name: "Michelle Potvin",
+    role: "Former tenant",
   },
   {
     quote: "We have rented with them for three years. Issues get handled properly and communication is always clear.",
@@ -103,8 +106,8 @@ export const siteReviews = [
 ] as const;
 
 export const siteConfig = {
-  name: "[CLIENT_NAME]",
-  fullName: "[CLIENT_NAME] Property Management",
+  name: "9th Star Property Management",
+  fullName: "9th Star Property Management",
   tagline: "Property management for investors who rent out residential homes.",
   heroHeadline: "You own the property. We run the rental.",
   heroSubhead:
@@ -139,9 +142,10 @@ export const siteConfig = {
     email: "[CLIENT_EMAIL]",
     address: "[CLIENT_ADDRESS]",
     emergencyPhone: "[CLIENT_EMERGENCY_PHONE]",
+    heroImage: siteImages.homes.contactHero,
   },
   nav: [
-    { label: "Rentals", href: "/properties" },
+    { label: "Homes", href: "/properties" },
     { label: "Tenants", href: "/residents" },
     { label: "Contact", href: "/contact" },
   ],

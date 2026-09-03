@@ -1,5 +1,6 @@
 import { PageHero } from "@/components/page-hero";
-import { siteImages } from "@/lib/site";
+import { ContactForm } from "@/components/contact/contact-form";
+import { siteConfig } from "@/lib/site";
 
 export default function ContactPage() {
   return (
@@ -8,13 +9,13 @@ export default function ContactPage() {
         badge="Get in touch"
         title="Contact"
         description="Tell us about your property. We will follow up with a clear quote and next steps."
-        image={siteImages.homes.porch}
+        image={siteConfig.contact.heroImage}
       />
-      <div className="bg-paper px-5 py-20 sm:px-8 sm:py-28 md:px-10" data-nav="light">
-        <div className="mx-auto max-w-4xl">
-          <p className="prose-dek text-muted">Contact form coming next.</p>
+      <section className="bg-paper px-5 py-20 sm:px-8 sm:py-28 md:px-10" data-nav="light">
+        <div className="mx-auto max-w-6xl">
+          <ContactForm />
         </div>
-      </div>
+      </section>
     </>
   );
 }

@@ -6,8 +6,8 @@ import path from "node:path";
 
 const PROJECT_ID = "whitby-link-ca";
 const API_KEY = "AIzaSyAe7vzB11y-meA38U7hAObEVIrtxfXuf9s";
-const ADMIN_EMAIL = process.env.FIREBASE_ADMIN_EMAIL ?? "admin@property-management.ca";
-const ADMIN_PASSWORD = process.env.FIREBASE_ADMIN_PASSWORD ?? "PropertyMgmt2026!";
+const ADMIN_EMAIL = process.env.FIREBASE_ADMIN_EMAIL ?? "9thpropertymanagement@9thstar.ca";
+const ADMIN_PASSWORD = process.env.FIREBASE_ADMIN_PASSWORD ?? "Aristotle@6870";
 const ROLES_COLLECTION = "pmRoles";
 
 function getAccessToken() {
@@ -38,11 +38,19 @@ async function ensureAdminUser() {
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     if (!message.includes("EMAIL_EXISTS")) throw error;
+
     const signedIn = await authRequest("accounts:signInWithPassword", {
       email: ADMIN_EMAIL,
       password: ADMIN_PASSWORD,
       returnSecureToken: true,
     });
+
+    await authRequest("accounts:update", {
+      idToken: signedIn.idToken,
+      password: ADMIN_PASSWORD,
+      returnSecureToken: false,
+    });
+
     return signedIn.localId;
   }
 }

@@ -100,7 +100,7 @@ export function HeroSection({ introReady = true }: HeroSectionProps) {
         className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-black/20 via-black/10 to-black/50"
       />
 
-      <div className="relative z-[2] flex min-h-[100svh] flex-col justify-end px-5 pb-16 pt-28 sm:px-8 sm:pb-20 md:px-10 lg:justify-center lg:pb-0">
+      <div className="relative z-[2] flex min-h-[100svh] flex-col justify-center px-5 py-28 sm:px-8 md:px-10">
         <div className="mx-auto w-full max-w-7xl lg:max-w-3xl">
           <span
             ref={badgeRef}
@@ -139,7 +139,7 @@ export function HeroSection({ introReady = true }: HeroSectionProps) {
               href="/properties"
               className="rounded-full border border-white/40 px-6 py-3.5 text-center text-sm font-medium text-white transition-colors hover:bg-white/10 sm:px-8"
             >
-              Available rentals
+              Our homes
             </Link>
           </div>
         </div>

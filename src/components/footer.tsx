@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/site";
+import { BrandName } from "@/components/brand-name";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -9,7 +10,9 @@ export function Footer() {
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 md:grid-cols-4 md:gap-8">
           <div className="md:col-span-2">
-            <p className="text-display-sm mb-4">{siteConfig.name}</p>
+            <p className="text-display-sm mb-4">
+              <BrandName />
+            </p>
             <p className="prose-dek text-muted">{siteConfig.tagline}</p>
           </div>
           <div>

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { siteConfig, heroImage } from "@/lib/site";
+import { BrandName } from "@/components/brand-name";
 
 export function IntroSequence({ onComplete }: { onComplete: () => void }) {
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -139,7 +140,7 @@ export function IntroSequence({ onComplete }: { onComplete: () => void }) {
           style={{ transform: "scaleX(0)" }}
         />
         <p ref={nameRef} className="font-display text-center text-4xl text-white sm:text-5xl md:text-6xl">
-          {siteConfig.name}
+          <BrandName />
         </p>
         <p ref={taglineRef} className="mt-4 max-w-md text-center text-sm text-white/80 sm:text-base">
           {siteConfig.tagline}

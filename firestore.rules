@@ -94,5 +94,26 @@ service cloud.firestore {
       allow read: if pmIsAdmin() || pmIsTenantSelf(tenantId);
       allow create, update, delete: if pmIsAdmin();
     }
+
+    match /pmContactSubmissions/{submissionId} {
+      allow create: if request.resource.data.keys().hasAll([
+          "name", "email", "phone", "propertyType", "address", "message", "createdAt"
+        ])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 120
+        && request.resource.data.email is string
+        && request.resource.data.email.matches('^.+@.+\\..+$')
+        && request.resource.data.phone is string
+        && request.resource.data.phone.size() >= 7
+        && request.resource.data.phone.size() <= 30
+        && request.resource.data.propertyType in ["house", "duplex", "condo", "other"]
+        && request.resource.data.message is string
+        && request.resource.data.message.size() >= 10
+        && request.resource.data.message.size() <= 3000
+        && request.resource.data.address is string
+        && request.resource.data.address.size() <= 200;
+      allow read, update, delete: if pmIsAdmin();
+    }
   }
 }

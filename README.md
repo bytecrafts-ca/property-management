@@ -1,9 +1,9 @@
 # 9th Star Property Management
 
-Production SEO site for Durham Region landlord acquisition.
+Production SEO site for Durham Region and GTA landlord acquisition.
 
-**Live domain:** https://9thstarpropertymanagement.ca  
-**Stack:** Next.js App Router, TypeScript, Tailwind CSS, Firebase tenant portal
+**Live domain:** https://9thstarpropertymanagement.ca (canonical apex, no www)  
+**Stack:** Next.js App Router, TypeScript, Tailwind CSS, Firebase tenant portal, FormSubmit leads
 
 ## Quick start
 
@@ -19,23 +19,31 @@ npm run build
 npm start
 ```
 
-## Client placeholders (`src/lib/site.ts`)
+## SEO optimization blitz (2026-09-16)
 
-Replace before calling the site "fully launched" for local SEO:
+### Shipped on-site
 
-- `legalName`
-- `founded`
-- `hours`
+- Canonical NAP in `src/lib/site.ts` with `napString`, phone `(416) 834-3587`, tel `+14168343587`
+- Homepage metadata via `buildMetadata("/")`
+- Skip-to-content + sticky mobile call bar
+- Nav: Services, Areas, For Landlords, About, Contact + Call / Get a quote
+- Home city cards linking money pages
+- New pages: `/property-management-scarborough`, `/property-management-toronto`, `/for-investors`
+- Redirects: `/get-a-quote` → `/free-rental-analysis`, `/services/rent-collection` and `/services/owner-reporting` → rent collection reporting
+- Guide: `/guides/managing-rental-property-while-living-abroad`
+- Footer NAP + expanded city links including Scarborough and Toronto
+- 404 links to money pages
+- Schema `areaServed` includes Scarborough, North York, Toronto
+- Off-site checklist refreshed in `local-seo-checklist.md`
+
+### Placeholders still empty (do not invent)
+
+- `legalName`, `founded`
 - `googleBusinessProfileUrl`
-- `ga4Id`
-- `gscVerification`
-- `nap.address` (only if you publish a real address; keep `addressDisplay` false otherwise)
+- `ga4Id`, `gscVerification`
+- Street address (`addressDisplay` stays false for service-area GBP)
 
-Phone and email are already set to production values used on the live site.
-
-## SEO architecture
-
-Money pages:
+## Money pages and primary keywords
 
 | URL | Primary keyword |
 | --- | --- |
@@ -49,74 +57,43 @@ Money pages:
 | `/property-management-bowmanville/` | property management Bowmanville |
 | `/property-management-courtice/` | property management Courtice |
 | `/property-management-brooklin/` | property management Brooklin |
+| `/property-management-scarborough/` | property management Scarborough |
+| `/property-management-toronto/` | condo property management Toronto |
+| `/services/residential-property-management/` | residential property management Durham |
+| `/services/tenant-screening/` | tenant screening Ontario |
+| `/services/tenant-placement/` | tenant placement Durham |
+| `/for-landlords/` | landlord property management Durham |
+| `/for-investors/` | investor property management Durham |
+| `/free-rental-analysis/` | free rental analysis Durham |
 
-Supporting conversion + authority:
+## Conversion
 
-- Services under `/services/`
-- Owners: `/for-landlords/`, `/free-rental-analysis/`, `/pricing/`, `/how-it-works/`
-- Guides under `/guides/`
-- Areas hub: `/areas-we-serve/`
-- Contact + NAP: `/contact/`
-- Sitemap: `/sitemap.xml`
-- Robots: `/robots.txt`
+- Owner lead form: `LeadForm` → FormSubmit → `/thank-you/`
+- Also: `/api/leads` exists for optional persistence (ephemeral on Vercel filesystem)
+- Sticky mobile call → `tel:+14168343587`
+- Header Call + Get a quote
 
-Keyword map: `src/lib/seo/keywords.ts`  
-Meta map: `src/lib/seo/meta.ts`  
-Schema helpers: `src/lib/seo/schema.ts`
-
-## Lead forms
-
-Owner lead form posts to `/api/leads` and redirects to `/thank-you/`.  
-Leads append to `content/leads.json` (gitignored). On Vercel, filesystem writes are ephemeral. For production persistence, connect email or a database next.
-
-## Tenant portal
-
-`/tenants/` uses Firebase auth. Legacy `/residents/` redirects here.  
-`/request/` redirects to `/maintenance-request/`.  
-`/properties/` redirects to `/available-rentals/`.
+Activate FormSubmit by confirming the first email to `info@9thstarpropertymanagement.ca`.
 
 ## Local SEO (off-site)
 
-See `local-seo-checklist.md`. Ranking #1 in Durham requires GBP, reviews, citations, and consistent NAP in addition to this site.
+See `local-seo-checklist.md`.
 
-## 90-day ranking plan
+Top 5 remaining actions for rankings:
 
-### Weeks 1–2
+1. Finish GBP (photos, services, weekly posts, correct apex URL)
+2. Collect real Google reviews from actual clients only
+3. Verify Search Console + submit sitemap
+4. Build citations with identical NAP (Apple, Bing, FB, LinkedIn, YellowPages)
+5. Add GA4 and paste real GBP URL into `site.ts`
 
-- Launch site on the live domain with HTTPS
-- Claim/optimize Google Business Profile
-- Submit sitemap in Google Search Console
-- Start first 10 citation listings with identical NAP
-- Confirm call tracking and form thank-you page
+## Tenant portal
 
-### Weeks 3–6
-
-- Publish 1 landlord guide per week (or refresh existing guides with local examples)
-- Request Google reviews from happy landlords after resolved work
-- Post weekly on GBP
-- Fix any crawl/index issues found in Search Console
-
-### Weeks 7–12
-
-- Reinforce top city pages with unique FAQs, photos, and internal links from new content
-- Expand pages that already show impressions
-- Build local links (chambers, partners, sponsorships)
-- Compare rank for Tier S keywords: Durham + Pickering/Ajax/Whitby/Oshawa/Clarington/Bowmanville
-
-## Analytics notes
-
-1. Set `ga4Id` in `src/lib/site.ts` and inject GA4 in `layout.tsx` when ready
-2. Convert `/thank-you/` into a GA4 `generate_lead` event
-3. Mark tel: CTAs with `data-cta` attributes already present for click tracking
-4. In Google Ads, create conversions for form submit and calls
+`/tenants/` and `/residents/` share the residents experience.  
+`/maintenance-request/` redirects to `/request/`.  
+`/pay-rent/` redirects to `/tenants/`.
 
 ## Deploy
 
-Configured for Vercel. Push to the connected GitHub repo to redeploy. Keep Cloudflare SSL Full (strict) if proxying DNS.
-
-## Content rules
-
-- No fake reviews, licenses, case studies, or rent stats
-- Mark SAMPLE content clearly
-- No em dashes in copy
-- Primary audience is landlords and investors, not tenants first
+Vercel from GitHub `bytecrafts-ca/property-management` (main).  
+Configure apex ↔ www redirect at the host so only `https://9thstarpropertymanagement.ca` is indexed.

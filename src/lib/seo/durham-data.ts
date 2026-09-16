@@ -130,6 +130,38 @@ export const seoCities = [
       "Pricing newer homes against older Whitby stock",
     ],
   },
+  {
+    slug: "scarborough",
+    name: "Scarborough",
+    path: "/property-management-scarborough",
+    primaryKeyword: "property management Scarborough",
+    neighbourhoods: ["Agincourt", "Malvern", "Scarborough Town Centre", "Cliffcrest", "Guildwood", "Woburn"],
+    housingMix:
+      "High condo density near transit, older detached stock, and mixed townhomes. Many investor-owned units near TTC and GO links toward Durham.",
+    localNotes:
+      "Scarborough landlords often compete with a large inventory of investor condos. Screening and realistic rent matter more than glossy listing photos. Units near Scarborough Town Centre and Guildwood lease differently from quieter pocket neighbourhoods.",
+    landlordConcerns: [
+      "Condo board rules and move-in logistics",
+      "Tenant screening in higher-turnover buildings",
+      "Pricing against a crowded investor inventory",
+    ],
+  },
+  {
+    slug: "toronto",
+    name: "Toronto",
+    path: "/property-management-toronto",
+    primaryKeyword: "condo property management Toronto",
+    neighbourhoods: ["Downtown core", "North York", "East Toronto", "Midtown", "Waterfront", "Etobicoke border"],
+    housingMix:
+      "Primarily investor condo units, some duplexes and small multi-res. Toronto rentals need building-specific strategy, not a Durham suburban playbook.",
+    localNotes:
+      "We welcome Toronto condo investors who want clear unit-level management. Board rules, elevator bookings, and status certificates affect every lease-up. Pricing must match the building and subway access, not a generic GTA average.",
+    landlordConcerns: [
+      "Condo corporation compliance for tenants",
+      "Vacancy cost on high carrying costs",
+      "Remote owners who need local vendor coverage",
+    ],
+  },
 ] as const;
 
 export const seoServices = [
@@ -254,4 +286,7 @@ export const serviceAreaCities = [
   "Newcastle",
   "Scugog",
   "Uxbridge",
+  "Scarborough",
+  "North York",
+  "Toronto",
 ] as const;

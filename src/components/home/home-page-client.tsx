@@ -12,6 +12,7 @@ import { OurStorySection } from "@/components/home/our-story-section";
 import { ReviewsMarquee } from "@/components/home/reviews-marquee";
 import { ServiceCards } from "@/components/home/service-cards";
 import { ResidentsStrip } from "@/components/home/residents-strip";
+import { HomeAreasStrip } from "@/components/home/home-areas-strip";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,6 +35,7 @@ export function HomePageClient() {
       <OurStorySection />
       <ReviewsMarquee />
       <ServiceCards />
+      <HomeAreasStrip />
       <PinnedFillWord word="SIMPLE" subtitle="One property. One manager. One bill at the end of the month." />
       <ResidentsStrip />
       <PinnedFillText lines={[siteConfig.pinnedHorizontal]} variant="light" direction="horizontal" />

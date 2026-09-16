@@ -14,7 +14,7 @@ export const pageMeta: Record<string, PageMeta> = {
     path: "/",
     title: "Property Management in Durham Region | 9th Star",
     description:
-      "Durham Region property management for landlords in Pickering, Ajax, Whitby, Oshawa, and Clarington. Get a free rental analysis.",
+      "Durham and GTA property management for landlords in Pickering, Ajax, Whitby, Oshawa, Clarington, and nearby. Call (416) 834-3587.",
   },
   "/property-management-durham": {
     path: "/property-management-durham",
@@ -24,9 +24,9 @@ export const pageMeta: Record<string, PageMeta> = {
   },
   "/areas-we-serve": {
     path: "/areas-we-serve",
-    title: `Areas We Serve in Durham | ${brand}`,
+    title: `Areas We Serve | ${brand}`,
     description:
-      "Property management across Pickering, Ajax, Whitby, Oshawa, Clarington, Bowmanville, Courtice, Brooklin, and nearby Durham communities.",
+      "Property management across Pickering, Ajax, Whitby, Oshawa, Clarington, Brooklin, Scarborough, Toronto, and nearby communities.",
   },
   "/services": {
     path: "/services",
@@ -40,11 +40,41 @@ export const pageMeta: Record<string, PageMeta> = {
     description:
       "Hire a Durham property manager for tenant placement, day-to-day operations, and clear monthly reporting. Talk to 9th Star.",
   },
+  "/for-investors": {
+    path: "/for-investors",
+    title: `Investor Property Management Durham & GTA | ${brand}`,
+    description:
+      "Hands-off residential property management for investors with rentals in Durham and the GTA. Screening, rent, maintenance, reporting.",
+  },
   "/free-rental-analysis": {
     path: "/free-rental-analysis",
     title: `Free Rental Analysis Durham | ${brand}`,
     description:
       "Request a free rental analysis for your Durham Region property. Pricing guidance, vacancy risk notes, and next steps from 9th Star.",
+  },
+  "/get-a-quote": {
+    path: "/get-a-quote",
+    title: `Get a Quote | ${brand}`,
+    description: "Request a property management quote from 9th Star.",
+    noIndex: true,
+  },
+  "/contact": {
+    path: "/contact",
+    title: `Contact 9th Star Property Management`,
+    description:
+      "Contact 9th Star for Durham Region property management. Call (416) 834-3587 or request a free rental analysis.",
+  },
+  "/maintenance-request": {
+    path: "/maintenance-request",
+    title: `Submit a Maintenance Request | ${brand}`,
+    description:
+      "Log a maintenance or complaint request for your rental. Emergencies should call (416) 834-3587 right away.",
+  },
+  "/reviews": {
+    path: "/reviews",
+    title: `Reviews | ${brand}`,
+    description:
+      "Read tenant and owner feedback for 9th Star Property Management across Durham Region rentals.",
   },
   "/pricing": {
     path: "/pricing",
@@ -70,35 +100,17 @@ export const pageMeta: Record<string, PageMeta> = {
     description:
       "Tenant login, maintenance requests, and support for renters in 9th Star managed homes across Durham Region.",
   },
-  "/maintenance-request": {
-    path: "/maintenance-request",
-    title: `Submit a Maintenance Request | ${brand}`,
-    description:
-      "Log a maintenance or complaint request for your rental. Emergencies should call 416-834-3587 right away.",
-  },
   "/about": {
     path: "/about",
     title: `About 9th Star Property Management | Durham`,
     description:
       "Learn how 9th Star manages residential rentals for Durham Region landlords and investors.",
   },
-  "/reviews": {
-    path: "/reviews",
-    title: `Reviews | ${brand}`,
-    description:
-      "Read tenant and owner feedback for 9th Star Property Management. Real reviews labeled clearly. Sample reviews marked as sample.",
-  },
   "/faq": {
     path: "/faq",
     title: `Property Management FAQ Durham | ${brand}`,
     description:
       "Answers for Durham landlords on fees, screening, vacancies, condo rules, and how 9th Star manages rentals.",
-  },
-  "/contact": {
-    path: "/contact",
-    title: `Contact 9th Star Property Management`,
-    description:
-      "Contact 9th Star for Durham Region property management. Call 416-834-3587 or request a free rental analysis.",
   },
   "/guides": {
     path: "/guides",

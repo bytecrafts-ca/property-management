@@ -12,6 +12,42 @@ const nextConfig: NextConfig = {
     unoptimized: true,
     remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
   },
+  // Canonical host: apex (non-www). Configure matching redirect in Vercel/DNS too.
+  async redirects() {
+    if (isGithubPages) return [];
+    return [
+      {
+        source: "/get-a-quote",
+        destination: "/free-rental-analysis/",
+        permanent: true,
+      },
+      {
+        source: "/get-a-quote/",
+        destination: "/free-rental-analysis/",
+        permanent: true,
+      },
+      {
+        source: "/services/rent-collection",
+        destination: "/services/rent-collection-financial-reporting/",
+        permanent: true,
+      },
+      {
+        source: "/services/rent-collection/",
+        destination: "/services/rent-collection-financial-reporting/",
+        permanent: true,
+      },
+      {
+        source: "/services/owner-reporting",
+        destination: "/services/rent-collection-financial-reporting/",
+        permanent: true,
+      },
+      {
+        source: "/services/owner-reporting/",
+        destination: "/services/rent-collection-financial-reporting/",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

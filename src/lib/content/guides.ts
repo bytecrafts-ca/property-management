@@ -117,6 +117,24 @@ export const guides: Guide[] = [
       "Start with a free rental analysis. You will quickly see whether professional management is worth it for your address.",
     ],
   },
+  {
+    slug: "managing-rental-property-while-living-abroad",
+    path: "/guides/managing-rental-property-while-living-abroad",
+    title: "Managing a rental property while living abroad",
+    description:
+      "How overseas and out-of-province landlords keep Durham and GTA rentals running with local screening, vendors, and reporting.",
+    datePublished: "2026-09-16",
+    primaryKeyword: "manage rental property while living abroad",
+    body: [
+      "Living abroad while owning a rental in Durham or the GTA is common. The risk is not ownership. The risk is slow response when heat fails, rent slips, or a vacancy sits.",
+      "Start with a local operator who can inspect, market, screen, and meet vendors without you flying in. Time zones make same-day texting hard. Process beats hope.",
+      "Ask how emergencies are triaged, how you approve spend, and how statements are delivered. You want photos, invoices, and a clear monthly report, not a mystery withdrawal.",
+      "Screening still matters more when you cannot walk the unit yourself. Credit, income, employment, and references should be completed before keys move.",
+      "Banking and lease execution can be handled remotely. Keys, make-ready, and contractor quality cannot. That is why distance owners usually lose money when they self-manage from another country.",
+      "If your rental is in Pickering, Ajax, Whitby, Oshawa, Clarington, Scarborough, or Toronto, ask for coverage specifics before you sign. Local vendor timing is the product.",
+      "9th Star Property Management works with owners who live outside the corridor and still want the rental handled. Request a free rental analysis to see if the model fits your property.",
+    ],
+  },
 ];
 
 export function getGuide(slug: string) {

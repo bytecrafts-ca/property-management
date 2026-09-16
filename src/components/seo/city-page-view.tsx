@@ -78,6 +78,17 @@ export function CityPageView({ slug }: { slug: CitySlug }) {
           <li>Lease renewals and day-to-day tenant communication</li>
         </ul>
 
+        <h2>Why local management matters in {city.name}</h2>
+        <p>
+          Generic GTA averages miss street-level reality. A vacant month in {city.name} still costs mortgage, taxes,
+          insurance, and utilities whether or not applicants are serious. We price and market to local comps, then
+          screen before keys move.
+        </p>
+        <p>
+          Owners who live outside {city.name} especially need a clear first call path for tenants. Maintenance tickets,
+          rent follow-up, and renewals should not wait for you to land at Pearson.
+        </p>
+
         <h2>Common landlord concerns in {city.name}</h2>
         <ul className="list-disc space-y-2 pl-5">
           {city.landlordConcerns.map((item) => (
@@ -117,10 +128,14 @@ export function CityPageView({ slug }: { slug: CitySlug }) {
         <h2>Get a free rental analysis for your {city.name} property</h2>
         <p>
           Tell us about your address or neighbourhood, property type, and current occupancy. Call{" "}
-          <a href="tel:4168343587" className="link-underline">
-            416-834-3587
+          <a href="tel:+14168343587" className="link-underline">
+            (416) 834-3587
           </a>{" "}
-          or request an analysis online. No pressure. Clear next steps.
+          or{" "}
+          <Link href="/free-rental-analysis" className="link-underline">
+            request an analysis online
+          </Link>
+          . No pressure. Clear next steps.
         </p>
       </SeoPage>
     </>

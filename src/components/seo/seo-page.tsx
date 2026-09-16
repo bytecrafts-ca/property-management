@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
+import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type Faq = { question: string; answer: string };
@@ -49,11 +50,11 @@ export function SeoPage({
               {ctaLabel}
             </Link>
             <a
-              href="tel:4168343587"
+              href={`tel:${siteConfig.nap.phoneTel}`}
               className="rounded-full border border-line px-6 py-3.5 text-center text-sm font-medium hover:bg-soft"
               data-cta="seo-hero-call"
             >
-              Call 416-834-3587
+              Call {siteConfig.nap.phoneDisplay}
             </a>
           </div>
         </div>

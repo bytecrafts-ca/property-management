@@ -47,7 +47,7 @@ export function LeadForm({
       await submitViaFormSubmit(payload);
       router.push("/thank-you");
     } catch {
-      setError("Something went wrong. Call us at 416-834-3587.");
+      setError(`Something went wrong. Call us at ${siteConfig.nap.phoneDisplay}.`);
       setLoading(false);
     }
   }
@@ -125,8 +125,8 @@ export function LeadForm({
       </button>
       <p className="mt-4 text-xs leading-relaxed text-muted">
         No pressure. We respond during business hours. Prefer a call?{" "}
-        <a href="tel:4168343587" className="link-underline">
-          416-834-3587
+        <a href={`tel:${siteConfig.nap.phoneTel}`} className="link-underline">
+          {siteConfig.nap.phoneDisplay}
         </a>
       </p>
     </form>

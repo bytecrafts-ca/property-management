@@ -9,7 +9,7 @@ export function organizationSchema() {
     legalName: siteConfig.legalName || siteConfig.name,
     url: siteConfig.domain,
     email: siteConfig.nap.email,
-    telephone: siteConfig.nap.phoneDisplay,
+    telephone: siteConfig.nap.phoneTel,
     areaServed: siteConfig.serviceAreaCities.map((city) => ({
       "@type": "City",
       name: `${city}, Ontario`,
@@ -24,7 +24,7 @@ export function localBusinessSchema() {
     name: siteConfig.nap.name,
     url: siteConfig.domain,
     image: absoluteUrl(siteConfig.images.homes.detached),
-    telephone: siteConfig.nap.phoneDisplay,
+    telephone: siteConfig.nap.phoneTel,
     email: siteConfig.nap.email,
     priceRange: "$$",
     areaServed: siteConfig.serviceAreaCities.map((city) => ({

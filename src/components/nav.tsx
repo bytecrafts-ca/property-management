@@ -15,6 +15,45 @@ function normalizePath(path: string) {
   return trimmed || "/";
 }
 
+function NavActionLink({
+  href,
+  label,
+  variant,
+  onDark,
+  className,
+  onClick,
+}: {
+  href: string;
+  label: string;
+  variant: "ghost" | "solid";
+  onDark?: boolean;
+  className?: string;
+  onClick?: () => void;
+}) {
+  const classes = cn(
+    "rounded-full px-4 py-2 text-sm transition-colors",
+    variant === "ghost" &&
+      (onDark ? "border border-surface/30 hover:bg-surface/10" : "border border-line hover:bg-soft"),
+    variant === "solid" &&
+      (onDark ? "bg-surface text-ink hover:bg-surface/90" : "bg-ink text-surface hover:bg-ink/90"),
+    className
+  );
+
+  if (href.startsWith("tel:") || href.startsWith("mailto:")) {
+    return (
+      <a href={href} className={classes} onClick={onClick}>
+        {label}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={classes} onClick={onClick}>
+      {label}
+    </Link>
+  );
+}
+
 export function Nav() {
   const pathname = usePathname();
   const introReady = useIntroReady();
@@ -90,23 +129,13 @@ export function Nav() {
 
           <div className="hidden items-center gap-3 lg:flex">
             {siteConfig.navActions.map((a) => (
-              <Link
+              <NavActionLink
                 key={a.href}
                 href={a.href}
-                className={cn(
-                  "rounded-full px-4 py-2 text-sm transition-colors",
-                  a.variant === "ghost" &&
-                    (onDark
-                      ? "border border-surface/30 hover:bg-surface/10"
-                      : "border border-line hover:bg-soft"),
-                  a.variant === "solid" &&
-                    (onDark
-                      ? "bg-surface text-ink hover:bg-surface/90"
-                      : "bg-ink text-surface hover:bg-ink/90")
-                )}
-              >
-                {a.label}
-              </Link>
+                label={a.label}
+                variant={a.variant}
+                onDark={onDark}
+              />
             ))}
           </div>
 
@@ -145,17 +174,17 @@ export function Nav() {
               </div>
               <div className="mt-auto flex flex-col gap-3 pb-8">
                 {siteConfig.navActions.map((a) => (
-                  <Link
+                  <NavActionLink
                     key={a.href}
                     href={a.href}
+                    label={a.label}
+                    variant={a.variant}
                     onClick={() => setOpen(false)}
                     className={cn(
-                      "rounded-full py-3 text-center text-sm",
+                      "py-3 text-center",
                       a.variant === "solid" ? "bg-ink text-surface" : "border border-line"
                     )}
-                  >
-                    {a.label}
-                  </Link>
+                  />
                 ))}
               </div>
             </div>

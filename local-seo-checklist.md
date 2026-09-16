@@ -1,69 +1,70 @@
 # Local SEO checklist (off-site)
 
-Use this after the website is live at https://9thstarpropertymanagement.ca.
+On-site work is in the repo. Rankings still depend on Google Business Profile, reviews, and citations.
 
-Do not invent citations or reviews. Complete each item with real business details.
+## NAP (keep identical everywhere)
 
-## Google Business Profile (highest leverage)
+- Name: 9th Star Property Management
+- Phone: (416) 834-3587
+- Email: info@9thstarpropertymanagement.ca
+- Website (canonical): https://9thstarpropertymanagement.ca (apex, no www)
+- Address: service-area business (no public storefront). Do not invent a street address on GBP or citations.
 
-- [ ] Claim or create GBP for **9th Star Property Management**
-- [ ] Set primary category: **Property management company**
-- [ ] Add secondary category only if accurate (for example Real estate agency)
-- [ ] Service area business: cover Pickering, Ajax, Whitby, Oshawa, Clarington, Bowmanville, Courtice, Brooklin, Newcastle, Scugog, Uxbridge
-- [ ] NAP must match website exactly:
-  - Name: 9th Star Property Management
-  - Phone: 416-834-3587
-  - Email: info@9thstarpropertymanagement.ca
-  - Address: only publish a real address if you want a storefront pin. If service-area only, keep address hidden consistently on site and GBP
-- [ ] Hours: replace `[CLIENT_HOURS]` in `src/lib/site.ts` and mirror on GBP
-- [ ] Description: natural Durham + city language (Pickering, Ajax, Whitby, Oshawa, Clarington). No keyword stuffing
-- [ ] Services list: match website service pages
-- [ ] Photos: real managed homes, exterior/interior, team if available (no fake stock as "our portfolio")
-- [ ] Website URL: https://9thstarpropertymanagement.ca
-- [ ] Booking/CTA: link to `/free-rental-analysis/`
-- [ ] Weekly GBP posts for 8 weeks (vacancy tips, city notes, fee education, review asks)
+## Google Business Profile
 
-## Reviews
+1. Primary category: Property management company
+2. Secondary: Real estate service (only if accurate)
+3. Service areas: Pickering, Ajax, Whitby, Oshawa, Clarington, Bowmanville, Courtice, Brooklin first. Add Scarborough / Toronto only if you truly serve them.
+4. Services list matching site service pages
+5. Hours matching site: Mon–Fri 9–6, Sat–Sun 9–5
+6. Website field: https://9thstarpropertymanagement.ca
+7. Photos: branded graphics + real property exteriors when available (no fake Unsplash luxury homes)
+8. Weekly GBP posts linking to city or service pages
+9. Ask real clients for Google reviews (never buy reviews, never post from foreign IPs)
 
-- [ ] Ask past/current landlords for Google reviews only after a good outcome
-- [ ] Script: "If you were happy with how we handled [property/city], would you leave a short Google review? Here is the link: [GBP_URL]"
-- [ ] Never buy reviews. Never post fake SAMPLE reviews to Google
-- [ ] Reply to every review within 48 hours
+## Citations / profiles
 
-## Citations (create only real listings)
+- Apple Business Connect
+- Bing Places
+- Facebook page
+- Instagram
+- LinkedIn company page
+- YellowPages.ca
+- Homestars (if you use it)
 
-Use identical NAP everywhere:
+Use the same NAP string on every profile.
 
-`9th Star Property Management | 416-834-3587 | info@9thstarpropertymanagement.ca | [address if published]`
+## Search Console + analytics
 
-Priority directories:
+1. Verify https://9thstarpropertymanagement.ca in Google Search Console
+2. Submit `/sitemap.xml`
+3. Add GA4 ID to `siteConfig.ga4Id` in `src/lib/site.ts`
+4. Add GSC verification token to `siteConfig.gscVerification`
+5. Paste real GBP URL into `siteConfig.googleBusinessProfileUrl`
 
-- [ ] Yellow Pages
-- [ ] Yelp
-- [ ] Homestars
-- [ ] Nextdoor Business
-- [ ] BBB (if applicable)
-- [ ] Ajax Chamber / Pickering Board of Trade / Whitby Chamber / Oshawa Chamber (where eligible)
-- [ ] Canadian business directories you actually qualify for
+## 90-day ranking plan
 
-Skip anything that requires fake credentials.
+### Days 1–30
+- Finish GBP completeness (services, photos, posts)
+- Collect 3 to 5 real Google reviews from actual owners/tenants
+- Confirm FormSubmit activation for info@
+- Post 4 GBP updates linking to Durham hub + top city pages
 
-## Search Console + Analytics
+### Days 31–60
+- Build citations above
+- Publish 1 new landlord guide or FAQ expansion
+- Internal link new GBP posts to `/property-management-oshawa`, `/whitby`, `/ajax`, `/pickering`
+- Continue real review asks after successful lease-ups
 
-- [ ] Add GA4 ID in `src/lib/site.ts` (`ga4Id`) and install tag
-- [ ] Add Search Console verification meta (`gscVerification`)
-- [ ] Submit sitemap: `https://9thstarpropertymanagement.ca/sitemap.xml`
-- [ ] Inspect homepage, Durham hub, and each city money page
-- [ ] Monitor queries weekly after week 3
+### Days 61–90
+- Compare Search Console queries for city + "property management"
+- Strengthen pages that get impressions but low CTR (title/meta only)
+- Add real listings to `content/listings.ts` when inventory exists
+- Keep review velocity steady (1 to 2 real reviews per month beats a fake burst)
 
-## Conversion tracking
+## Do not
 
-- [ ] GA4 events: `generate_lead` on `/thank-you/`, `click_to_call` on tel links
-- [ ] Google Ads call + form conversions once ads run
-- [ ] Optional call tracking number only if it still syncs to GBP carefully (avoid NAP split)
-
-## Local links (weeks 7–12)
-
-- [ ] Partner with local vendors (HVAC, plumbing) for reciprocal mentions where natural
-- [ ] Community sponsorships in Durham with a website mention
-- [ ] Landlord education posts linking to city + service pages
+- Fake reviews or review farms
+- City-name-swap spam pages
+- Promise #1 rankings from code alone
+- Put a fake street address on a service-area GBP

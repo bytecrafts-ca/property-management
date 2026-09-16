@@ -1,6 +1,10 @@
+import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
 import { ContactForm } from "@/components/contact/contact-form";
 import { siteConfig } from "@/lib/site";
+import { buildMetadata } from "@/lib/seo/meta";
+
+export const metadata: Metadata = buildMetadata("/contact");
 
 export default function ContactPage() {
   return (

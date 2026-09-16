@@ -64,12 +64,6 @@ export const pageMeta: Record<string, PageMeta> = {
     description:
       "Contact 9th Star for Durham Region property management. Call (416) 834-3587 or request a free rental analysis.",
   },
-  "/maintenance-request": {
-    path: "/maintenance-request",
-    title: `Submit a Maintenance Request | ${brand}`,
-    description:
-      "Log a maintenance or complaint request for your rental. Emergencies should call (416) 834-3587 right away.",
-  },
   "/reviews": {
     path: "/reviews",
     title: `Reviews | ${brand}`,
@@ -99,6 +93,19 @@ export const pageMeta: Record<string, PageMeta> = {
     title: `Tenant Portal and Support | ${brand}`,
     description:
       "Tenant login, maintenance requests, and support for renters in 9th Star managed homes across Durham Region.",
+  },
+  "/request": {
+    path: "/request",
+    title: `Submit a Maintenance Request | ${brand}`,
+    description:
+      "Log a maintenance or complaint request for your rental. Emergencies should call (416) 834-3587 right away.",
+  },
+  "/maintenance-request": {
+    path: "/maintenance-request",
+    title: `Submit a Maintenance Request | ${brand}`,
+    description:
+      "Log a maintenance or complaint request for your rental. Emergencies should call (416) 834-3587 right away.",
+    noIndex: true,
   },
   "/about": {
     path: "/about",

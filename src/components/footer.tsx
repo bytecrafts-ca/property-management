@@ -68,7 +68,7 @@ export function Footer() {
                 </Link>
               </p>
               <p>
-                <Link href="/properties" className="link-underline">
+                <Link href="/available-rentals" className="link-underline">
                   Homes
                 </Link>
               </p>

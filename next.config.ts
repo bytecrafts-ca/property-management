@@ -27,6 +27,26 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/residents",
+        destination: "/tenants/",
+        permanent: true,
+      },
+      {
+        source: "/residents/",
+        destination: "/tenants/",
+        permanent: true,
+      },
+      {
+        source: "/properties",
+        destination: "/available-rentals/",
+        permanent: true,
+      },
+      {
+        source: "/properties/",
+        destination: "/available-rentals/",
+        permanent: true,
+      },
+      {
         source: "/services/rent-collection",
         destination: "/services/rent-collection-financial-reporting/",
         permanent: true,

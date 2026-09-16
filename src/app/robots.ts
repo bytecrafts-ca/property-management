@@ -9,6 +9,7 @@ export default function robots(): MetadataRoute.Robots {
       disallow: ["/admin", "/api/", "/thank-you"],
     },
     sitemap: `${siteConfig.domain}/sitemap.xml`,
-    host: siteConfig.domain,
+    // Prefer apex host (middleware enforces www → apex)
+    host: siteConfig.domain.replace(/^https?:\/\//, ""),
   };
 }

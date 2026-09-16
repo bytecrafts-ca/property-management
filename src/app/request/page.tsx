@@ -1,6 +1,10 @@
+import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
 import { TenantRequestForm } from "@/components/request/tenant-request-form";
-import { siteImages } from "@/lib/site";
+import { siteConfig, siteImages } from "@/lib/site";
+import { buildMetadata } from "@/lib/seo/meta";
+
+export const metadata: Metadata = buildMetadata("/request");
 
 export default function RequestPage() {
   return (
@@ -19,10 +23,10 @@ export default function RequestPage() {
             Open the form
           </a>
           <a
-            href="tel:4168343587"
+            href={`tel:${siteConfig.nap.phoneTel}`}
             className="rounded-full border border-white/40 px-6 py-3.5 text-center text-sm font-medium text-white transition-colors hover:bg-white/10 sm:px-8"
           >
-            Emergency: 416-834-3587
+            Emergency: {siteConfig.nap.phoneDisplay}
           </a>
         </div>
       </PageHero>

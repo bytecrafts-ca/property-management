@@ -8,13 +8,20 @@ import { LenisProvider } from "@/components/lenis-provider";
 import { IntroProvider } from "@/components/intro-provider";
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/site";
-import { buildMetadata } from "@/lib/seo/meta";
 import { localBusinessSchema, organizationSchema, websiteSchema } from "@/lib/seo/schema";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 
+/**
+ * Do NOT set alternates.canonical here. Child pages without their own metadata
+ * would inherit a homepage canonical and trigger GSC duplicate canonical errors.
+ */
 export const metadata: Metadata = {
-  ...buildMetadata("/"),
+  title: {
+    default: `${siteConfig.fullName} | ${siteConfig.market}`,
+    template: "%s",
+  },
+  description: siteConfig.tagline,
   metadataBase: new URL(siteConfig.domain),
   verification: siteConfig.gscVerification ? { google: siteConfig.gscVerification } : undefined,
 };

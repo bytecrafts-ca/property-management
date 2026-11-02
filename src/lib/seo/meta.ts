@@ -54,9 +54,9 @@ export const pageMeta: Record<string, PageMeta> = {
   },
   "/short-term-stays": {
     path: "/short-term-stays",
-    title: `Short Term Stays | Book Direct with ${brand}`,
+    title: `Short Term Rentals in Whitby | Book Direct with ${brand}`,
     description:
-      "Book a furnished 1, 2, or 3 bedroom unit or the whole home directly with 9th Star. Check live availability and book online.",
+      "Private studio, 2 bed suite, 3 bed main floor, or the whole home for 12 in downtown Whitby. Near the 401 and Whitby GO. Book direct, all fees included.",
   },
   "/get-a-quote": {
     path: "/get-a-quote",

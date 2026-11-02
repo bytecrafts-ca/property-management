@@ -179,6 +179,7 @@ export const siteConfig = {
     { label: "Services", href: "/services" },
     { label: "Areas", href: "/areas-we-serve" },
     { label: "For Landlords", href: "/for-landlords" },
+    { label: "Short Term Stays", href: "/short-term-stays" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ],

@@ -52,6 +52,12 @@ export const pageMeta: Record<string, PageMeta> = {
     description:
       "Request a free rental analysis for your Durham Region property. Pricing guidance, vacancy risk notes, and next steps from 9th Star.",
   },
+  "/short-term-stays": {
+    path: "/short-term-stays",
+    title: `Short Term Stays | Book Direct with ${brand}`,
+    description:
+      "Book a furnished 1, 2, or 3 bedroom unit or the whole home directly with 9th Star. Check live availability and book online.",
+  },
   "/get-a-quote": {
     path: "/get-a-quote",
     title: `Get a Quote | ${brand}`,

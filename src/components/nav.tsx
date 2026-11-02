@@ -111,7 +111,7 @@ export function Nav() {
             <BrandName compact />
           </Link>
 
-          <div className="hidden items-center gap-8 lg:flex">
+          <div className="hidden items-center gap-6 lg:flex xl:gap-8">
             {siteConfig.nav.map((item) => (
               <Link
                 key={item.href}

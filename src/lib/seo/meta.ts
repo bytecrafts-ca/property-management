@@ -146,6 +146,12 @@ export const pageMeta: Record<string, PageMeta> = {
     title: `Terms of Use | ${brand}`,
     description: "Terms of use for 9thstarpropertymanagement.ca.",
   },
+  "/wifi": {
+    path: "/wifi",
+    title: `Guest Wi-Fi | ${brand}`,
+    description: "Wi-Fi details for 9th Star guests in Whitby.",
+    noIndex: true,
+  },
   "/thank-you": {
     path: "/thank-you",
     title: `Thank You | ${brand}`,

@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { StickyCallBar } from "@/components/sticky-call-bar";
 import { LenisProvider } from "@/components/lenis-provider";
 import { IntroProvider } from "@/components/intro-provider";
+import { SiteChrome } from "@/components/site-chrome";
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/site";
 import { localBusinessSchema, organizationSchema, websiteSchema } from "@/lib/seo/schema";
@@ -41,10 +42,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <JsonLd data={websiteSchema()} />
         <LenisProvider>
           <IntroProvider>
-            <Nav />
+            <SiteChrome>
+              <Nav />
+            </SiteChrome>
             <main id="main-content">{children}</main>
-            <Footer />
-            <StickyCallBar />
+            <SiteChrome>
+              <Footer />
+              <StickyCallBar />
+            </SiteChrome>
           </IntroProvider>
         </LenisProvider>
       </body>

@@ -12,6 +12,7 @@ import { usePathname } from "next/navigation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { IntroSequence } from "@/components/home/intro-sequence";
+import { isBarePath } from "@/lib/bare-paths";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,6 +39,10 @@ export function IntroProvider({ children }: { children: ReactNode }) {
     window.dispatchEvent(new CustomEvent("nav-theme-sync"));
     requestAnimationFrame(() => ScrollTrigger.refresh());
   }, []);
+
+  if (isBarePath(pathname)) {
+    return <IntroContext.Provider value={{ introDone: true }}>{children}</IntroContext.Provider>;
+  }
 
   return (
     <IntroContext.Provider value={{ introDone }}>

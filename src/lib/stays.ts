@@ -1,3 +1,5 @@
+import { withBasePath } from "@/lib/base-path";
+
 export const hospitableSiteUuid = "a3214232-0765-4ea0-86fb-2d53ab1de8d4";
 
 export type StayPhoto = {
@@ -5,7 +7,18 @@ export type StayPhoto = {
   large: string;
 };
 
+export type StayVideo = {
+  src: string;
+  poster: string;
+};
+
+const stayVideo = (name: string): StayVideo => ({
+  src: withBasePath(`/stays/videos/${name}.mp4`),
+  poster: withBasePath(`/stays/videos/${name}.jpg`),
+});
+
 export type ShortTermStay = {
+  video?: StayVideo;
   slug: string;
   tabLabel: string;
   name: string;
@@ -46,6 +59,7 @@ export const shortTermStays: ShortTermStay[] = [
       "Garage and backyard shed are not for guest use",
     ],
     propertyId: "2541373",
+    video: stayVideo("main-floor"),
   },
   {
     slug: "2-bedroom",
@@ -73,6 +87,7 @@ export const shortTermStays: ShortTermStay[] = [
       "Quiet hours 10 pm to 8 am",
     ],
     propertyId: "2541372",
+    video: stayVideo("2-bedroom"),
   },
   {
     slug: "studio",
@@ -100,6 +115,7 @@ export const shortTermStays: ShortTermStay[] = [
       "Quiet hours 9 pm to 8 am",
     ],
     propertyId: "2541374",
+    video: stayVideo("studio"),
   },
   {
     slug: "whole-home",
@@ -128,6 +144,7 @@ export const shortTermStays: ShortTermStay[] = [
       "Garage and backyard shed are not for guest use",
     ],
     propertyId: "2541375",
+    video: stayVideo("whole-home"),
   },
 ];
 

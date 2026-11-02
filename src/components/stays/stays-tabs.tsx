@@ -105,7 +105,7 @@ export function StaysTabs({ photosByProperty }: { photosByProperty: Record<strin
         aria-labelledby={`tab-${active.slug}`}
         className="mt-6 rounded-[1.25rem] border border-line bg-surface p-3 sm:p-6"
       >
-        <StayGallery key={active.slug} photos={photos} label={active.name} />
+        <StayGallery key={active.slug} photos={photos} video={active.video} label={active.name} />
 
         <div className="mt-8 grid gap-10 px-1 sm:px-0 lg:mt-10 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-12">
           <div className="lg:col-start-1">

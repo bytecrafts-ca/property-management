@@ -37,7 +37,7 @@ export function BookingWidget({ siteUuid, propertyId }: { siteUuid: string; prop
       if (!cancelled && !container.querySelector("iframe")) setStatus("error");
     }, LOAD_TIMEOUT_MS);
 
-    const mount = async () => {
+    const settle = async () => {
       for (let i = 0; i < 5 && window.__hospitableWidgetLoaderInit; i += 1) {
         try {
           await window.__hospitableWidgetLoaderInit;
@@ -45,22 +45,39 @@ export function BookingWidget({ siteUuid, propertyId }: { siteUuid: string; prop
           break;
         }
       }
-      if (cancelled) return;
+    };
 
-      container.replaceChildren();
-      document.getElementById("booking-iframe")?.remove();
+    const inject = () =>
+      new Promise<boolean>((resolve) => {
+        const script = document.createElement("script");
+        script.src = LOADER_SRC;
+        script.async = true;
+        script.dataset.siteUuid = siteUuid;
+        script.dataset.propertyId = propertyId;
+        script.dataset.theme = "multi";
+        script.dataset.container = containerId;
+        script.onload = () => resolve(true);
+        script.onerror = () => resolve(false);
+        container.appendChild(script);
+      });
 
-      const script = document.createElement("script");
-      script.src = LOADER_SRC;
-      script.async = true;
-      script.dataset.siteUuid = siteUuid;
-      script.dataset.propertyId = propertyId;
-      script.dataset.theme = "multi";
-      script.dataset.container = containerId;
-      script.onerror = () => {
-        if (!cancelled) setStatus("error");
-      };
-      container.appendChild(script);
+    // A loader from a tab the user already left can still run and hold the global init lock,
+    // which makes our loader exit without mounting. Retry once that stale init settles.
+    const mount = async () => {
+      for (let attempt = 0; attempt < 3; attempt += 1) {
+        await settle();
+        if (cancelled || container.querySelector("iframe")) return;
+
+        container.replaceChildren();
+        document.getElementById("booking-iframe")?.remove();
+
+        const loaded = await inject();
+        if (cancelled) return;
+        if (!loaded) {
+          setStatus("error");
+          return;
+        }
+      }
     };
 
     const observer = new MutationObserver(() => {
